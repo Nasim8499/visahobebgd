@@ -50,7 +50,7 @@ const HeroSlider = () => {
             alt={slides[current].title}
             className="w-full h-full object-cover scale-105"
           />
-          <div className="absolute inset-0 bg-hero-overlay/60" />
+          <div className="absolute inset-0" style={{ backgroundColor: "rgba(10, 25, 47, 0.65)" }} />
         </motion.div>
       </AnimatePresence>
 
