@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Globe, Users, Shield, ArrowRight, Briefcase, Plane, Building2, ChevronRight, Sparkles } from "lucide-react";
+import { Globe, Users, Shield, ArrowRight, Briefcase, Plane, Building2, ChevronRight, Sparkles, CheckCircle } from "lucide-react";
 import { useRef } from "react";
 import HeroSlider from "@/components/HeroSlider";
 import AnimatedSection from "@/components/AnimatedSection";
 import CounterAnimation from "@/components/CounterAnimation";
-import ParallaxSection from "@/components/ParallaxSection";
+import PartnersMarquee from "@/components/PartnersMarquee";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import aboutTeam from "@/assets/about-team.jpg";
 import servicesVisa from "@/assets/services-visa.jpg";
@@ -19,18 +19,36 @@ const features = [
 ];
 
 const newsAlerts = [
-  { date: "Apr 10, 2026", tag: "Singapore", title: "Singapore Updates Work Permit Quotas for Q3 2026", desc: "MOM announces revised quotas affecting S Pass and Work Permit holders in the construction sector." },
-  { date: "Apr 5, 2026", tag: "Australia", title: "Australia Extends Temporary Visa Concessions for Skilled Workers", desc: "The Department of Home Affairs has announced extensions for Subclass 482 visa holders." },
-  { date: "Mar 28, 2026", tag: "Europe", title: "Serbia Updates English Language Test Requirements for Worker Visas", desc: "New language proficiency standards announced for incoming foreign workforce." },
-  { date: "Mar 20, 2026", tag: "Russia", title: "Russia Introduces New Employee Registration Requirements Effective April 2026", desc: "Federal Migration Service updates registration procedures for foreign workers." },
-  { date: "Mar 15, 2026", tag: "Cambodia", title: "Cambodia Introduces New Project to Streamline Work Visa Procedures", desc: "Ministry of Labour simplifies documentation requirements for skilled foreign workers." },
-  { date: "Mar 10, 2026", tag: "Europe", title: "European Union Final Approval of EU Talent Platform for Third-Country Workers", desc: "The platform aims to match qualified workers with EU employers efficiently." },
+  { date: "Apr 10, 2026", tag: "Singapore", title: "Singapore Updates Work Permit Quotas for Q3 2026" },
+  { date: "Apr 5, 2026", tag: "Australia", title: "Australia Extends Temporary Visa Concessions for Skilled Workers" },
+  { date: "Mar 28, 2026", tag: "Europe", title: "Serbia Updates English Language Test Requirements" },
+  { date: "Mar 20, 2026", tag: "Russia", title: "Russia Introduces New Employee Registration Requirements" },
+  { date: "Mar 15, 2026", tag: "Cambodia", title: "Cambodia Streamlines Work Visa Procedures" },
+  { date: "Mar 10, 2026", tag: "Europe", title: "EU Final Approval of Talent Platform for Third-Country Workers" },
 ];
 
 const services = [
-  { icon: Briefcase, title: "Manpower Recruitment", desc: "Placement of skilled and semi-skilled workers with overseas employer coordination and professional contract preparation.", image: servicesManpower },
-  { icon: Plane, title: "Visa & Travel Services", desc: 'Processing assistance for all visa types. We specialize in preparing "Embassy-Ready" documentation to minimize errors.', image: servicesVisa },
-  { icon: Building2, title: "Strategic Program Management", desc: "Comprehensive program management for organizations with complex, multi-country immigration needs.", image: aboutTeam },
+  {
+    icon: Briefcase,
+    title: "Manpower Recruitment",
+    desc: "Placement of skilled and semi-skilled workers with overseas employer coordination and professional contract preparation.",
+    image: servicesManpower,
+    highlights: ["Employer Coordination", "Worker Screening", "Contract Preparation"],
+  },
+  {
+    icon: Plane,
+    title: "Visa & Travel Services",
+    desc: 'Processing assistance for all visa types. We specialize in preparing "Embassy-Ready" documentation.',
+    image: servicesVisa,
+    highlights: ["Embassy-Ready Docs", "All Visa Types", "Travel Guidance"],
+  },
+  {
+    icon: Building2,
+    title: "Strategic Program Management",
+    desc: "Comprehensive program management for organizations with complex, multi-country immigration needs.",
+    image: aboutTeam,
+    highlights: ["Multi-Country", "Compliance", "End-to-End"],
+  },
 ];
 
 const stats = [
@@ -46,7 +64,7 @@ const Index = () => {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
-    <div>
+    <div className="pb-16 lg:pb-0">
       <HeroSlider />
 
       {/* Features */}
@@ -58,13 +76,13 @@ const Index = () => {
                 <motion.div
                   whileHover={{ y: -8, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)" }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="bg-card rounded-xl shadow-xl p-8 border border-border cursor-pointer group"
+                  className="bg-card rounded-xl shadow-xl p-6 sm:p-8 border border-border cursor-pointer group"
                 >
                   <motion.div whileHover={{ rotate: 10, scale: 1.1 }} transition={{ type: "spring" }}>
                     <f.icon className="text-primary mb-4 group-hover:text-highlight-hover transition-colors" size={32} />
                   </motion.div>
-                  <h3 className="font-display font-bold text-lg mb-2 text-card-foreground">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                  <h3 className="font-display font-bold text-base sm:text-lg mb-2 text-card-foreground">{f.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
                   <div className="h-1 w-0 group-hover:w-full bg-primary rounded-full mt-4 transition-all duration-500" />
                 </motion.div>
               </AnimatedSection>
@@ -72,7 +90,7 @@ const Index = () => {
           </div>
 
           <AnimatedSection className="text-center mt-16">
-            <p className="text-muted-foreground max-w-3xl mx-auto mb-6">
+            <p className="text-muted-foreground max-w-3xl mx-auto mb-6 text-sm sm:text-base">
               We bring together smart, friendly legal teams and smart, friendly technology
               <span className="text-primary font-semibold"> to make immigration easier for companies and the global talent they depend on.</span>
             </p>
@@ -84,6 +102,9 @@ const Index = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Partners Marquee */}
+      <PartnersMarquee />
 
       {/* Stats Counter with Parallax Background */}
       <section ref={parallaxRef} className="relative py-20 md:py-28 overflow-hidden">
@@ -102,7 +123,7 @@ const Index = () => {
 
       {/* Global Talent Race */}
       <section className="section-padding bg-section-alt">
-        <div className="container-main grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container-main grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <AnimatedSection>
             <motion.span
               initial={{ width: 0 }}
@@ -110,13 +131,13 @@ const Index = () => {
               viewport={{ once: true }}
               className="block h-1 bg-primary rounded-full mb-6"
             />
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6">
               Helping you win the race for global talent across 180+ countries.
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Virtually any business, and many organizations, can benefit from using VisaHOBe to access, manage, or optimize their global talent. Whether you need to place skilled workers in Singapore, Australia, Russia, Saudi Arabia, Cambodia, or Belarus — we've got you covered.
+            <p className="text-muted-foreground leading-relaxed mb-4 text-sm sm:text-base">
+              Virtually any business, and many organizations, can benefit from using VisaHOBe to access, manage, or optimize their global talent.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-muted-foreground leading-relaxed mb-6 text-sm sm:text-base">
               With deep expertise in manpower recruitment, employer coordination, and embassy-ready documentation, we ensure the best possible experience for both employers and workers.
             </p>
             <motion.div whileHover={{ x: 5 }} className="inline-block">
@@ -145,45 +166,43 @@ const Index = () => {
         </div>
       </section>
 
-      {/* News Alerts */}
-      <section className="section-padding bg-background">
+      {/* News Alerts - Styled with footer bg */}
+      <section className="section-padding bg-footer text-footer-foreground">
         <div className="container-main">
           <AnimatedSection>
-            <div className="flex items-center justify-center gap-3 mb-12">
-              <Sparkles className="text-primary" size={24} />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-center text-foreground">
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <Sparkles className="text-primary" size={22} />
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-center text-background">
                 Immigration News Alerts
               </h2>
-              <Sparkles className="text-primary" size={24} />
+              <Sparkles className="text-primary" size={22} />
             </div>
           </AnimatedSection>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {newsAlerts.map((n, i) => (
-              <AnimatedSection key={i} delay={i * 0.08}>
+              <AnimatedSection key={i} delay={i * 0.06}>
                 <motion.div
-                  whileHover={{ y: -6, boxShadow: "0 20px 40px -12px rgba(0,0,0,0.12)" }}
+                  whileHover={{ y: -4, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="bg-card border border-border rounded-xl p-6 h-full flex flex-col group cursor-pointer"
+                  className="bg-footer-foreground/5 border border-footer-foreground/10 rounded-xl p-4 sm:p-5 h-full flex flex-col group cursor-pointer backdrop-blur-sm hover:bg-footer-foreground/10 transition-colors"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <motion.span
-                      whileHover={{ scale: 1.1 }}
-                      className="px-2.5 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full"
-                    >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-primary/20 text-primary rounded-full">
                       {n.tag}
-                    </motion.span>
-                    <span className="text-xs text-muted-foreground">{n.date}</span>
+                    </span>
+                    <span className="text-[10px] sm:text-xs text-footer-foreground/50">{n.date}</span>
                   </div>
-                  <h3 className="font-display font-semibold text-card-foreground mb-2 text-sm leading-snug group-hover:text-primary transition-colors">{n.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed flex-1">{n.desc}</p>
-                  <Link to="/insights" className="mt-4 inline-flex items-center gap-1 text-primary text-xs font-semibold group-hover:gap-2 transition-all">
-                    Read More <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  <h3 className="font-display font-semibold text-background text-xs sm:text-sm leading-snug group-hover:text-primary transition-colors flex-1">
+                    {n.title}
+                  </h3>
+                  <Link to="/insights" className="mt-3 inline-flex items-center gap-1 text-primary text-xs font-semibold group-hover:gap-2 transition-all">
+                    Read More <ChevronRight size={12} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
               </AnimatedSection>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="text-center mt-8">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
               <Link to="/insights" className="inline-flex items-center gap-2 px-8 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
                 All Alerts <ArrowRight size={16} />
@@ -193,34 +212,59 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="section-padding bg-section-alt">
+      {/* Services Preview - Redesigned */}
+      <section className="section-padding bg-background">
         <div className="container-main">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
-            <p className="text-muted-foreground max-w-2xl mb-12">
-              VisaHOBe offers specialized immigration and recruitment services, providing seamless support throughout your journey with deep expertise across multiple corridors.
-            </p>
+            <div className="text-center mb-12">
+              <motion.span
+                initial={{ width: 0 }}
+                whileInView={{ width: "4rem" }}
+                viewport={{ once: true }}
+                className="block h-1 bg-primary rounded-full mx-auto mb-4"
+              />
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">Our Services</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+                Specialized immigration and recruitment services with deep expertise across multiple corridors.
+              </p>
+            </div>
           </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="space-y-6">
             {services.map((s, i) => (
-              <AnimatedSection key={i} delay={i * 0.15}>
+              <AnimatedSection key={i} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="bg-card rounded-xl overflow-hidden shadow-lg border border-border group cursor-pointer"
+                  className={`flex flex-col ${i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} bg-card rounded-2xl overflow-hidden shadow-lg border border-border group cursor-pointer`}
                 >
-                  <div className="h-48 overflow-hidden relative">
-                    <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="md:w-2/5 h-48 sm:h-56 md:h-auto relative overflow-hidden">
+                    <motion.img
+                      src={s.image}
+                      alt={s.title}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.6 }}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/90 flex items-center justify-center backdrop-blur-sm">
+                        <s.icon className="text-primary-foreground" size={24} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <motion.div whileHover={{ rotate: 5 }} className="inline-block">
-                      <s.icon className="text-primary mb-3" size={28} />
-                    </motion.div>
-                    <h3 className="font-display font-bold text-lg text-card-foreground mb-2 group-hover:text-primary transition-colors">{s.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                    <Link to="/services" className="mt-4 inline-flex items-center gap-1 text-primary text-sm font-semibold group-hover:gap-2 transition-all">
+                  <div className="md:w-3/5 p-6 sm:p-8 flex flex-col justify-center">
+                    <h3 className="font-display font-bold text-xl sm:text-2xl text-card-foreground mb-3 group-hover:text-primary transition-colors">{s.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {s.highlights.map((h) => (
+                        <span key={h} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 border border-primary/15 rounded-full text-xs font-medium text-primary">
+                          <CheckCircle size={12} /> {h}
+                        </span>
+                      ))}
+                    </div>
+                    <Link to="/services" className="inline-flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all">
                       Learn More <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -228,6 +272,7 @@ const Index = () => {
               </AnimatedSection>
             ))}
           </div>
+
           <div className="text-center mt-10">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
               <Link to="/services" className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-highlight-hover transition-colors shadow-lg hover:shadow-xl">
@@ -237,25 +282,26 @@ const Index = () => {
           </div>
         </div>
       </section>
+
       {/* Testimonials */}
       <TestimonialsCarousel />
 
       {/* Newsletter */}
       <section className="section-padding bg-nav">
         <div className="container-main">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <AnimatedSection>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-nav-foreground">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-nav-foreground">
                 Get the latest immigration news and insights, right in your inbox.
               </h2>
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <input type="text" placeholder="First Name" className="px-4 py-3 rounded-lg bg-nav-foreground/10 text-nav-foreground placeholder:text-nav-foreground/40 border border-nav-foreground/20 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" />
-                  <input type="text" placeholder="Last Name" className="px-4 py-3 rounded-lg bg-nav-foreground/10 text-nav-foreground placeholder:text-nav-foreground/40 border border-nav-foreground/20 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" />
+                  <input type="text" placeholder="First Name" className="px-4 py-3 rounded-lg bg-nav-foreground/10 text-nav-foreground placeholder:text-nav-foreground/40 border border-nav-foreground/20 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm" />
+                  <input type="text" placeholder="Last Name" className="px-4 py-3 rounded-lg bg-nav-foreground/10 text-nav-foreground placeholder:text-nav-foreground/40 border border-nav-foreground/20 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm" />
                 </div>
-                <input type="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-lg bg-nav-foreground/10 text-nav-foreground placeholder:text-nav-foreground/40 border border-nav-foreground/20 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" />
+                <input type="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-lg bg-nav-foreground/10 text-nav-foreground placeholder:text-nav-foreground/40 border border-nav-foreground/20 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm" />
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}

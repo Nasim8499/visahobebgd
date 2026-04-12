@@ -18,12 +18,31 @@ const countries = [
 
 const Destinations = () => {
   return (
-    <div className="pt-20">
+    <div className="pt-20 pb-16 lg:pb-0">
       {/* Hero */}
-      <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
-        <img src={globalNetwork} alt="Global destinations" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-hero-overlay/70" />
+      <section className="relative h-[45vh] sm:h-[50vh] md:h-[60vh] overflow-hidden">
+        <motion.img
+          src={globalNetwork}
+          alt="Global destinations"
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5 }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/60 to-foreground/80" />
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/60 to-primary"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "3rem" }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-primary rounded-full mb-6"
+          />
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,15 +65,23 @@ const Destinations = () => {
       <section className="section-padding bg-background">
         <div className="container-main">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
-              Target Countries
-            </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
-              Each destination has unique requirements. Our team ensures embassy-ready documentation and compliance for every corridor.
-            </p>
+            <div className="text-center mb-12">
+              <motion.span
+                initial={{ width: 0 }}
+                whileInView={{ width: "3rem" }}
+                viewport={{ once: true }}
+                className="block h-1 bg-primary rounded-full mx-auto mb-4"
+              />
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
+                Target Countries
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+                Each destination has unique requirements. Our team ensures embassy-ready documentation and compliance for every corridor.
+              </p>
+            </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
             {countries.map((c, i) => (
               <AnimatedSection key={c.code} delay={i * 0.08}>
                 <CountryCard {...c} />
@@ -65,17 +92,28 @@ const Destinations = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary">
-        <div className="container-main text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+      <section className="section-padding bg-primary relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+          transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+          style={{
+            backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 20px, white 20px, white 21px)",
+            backgroundSize: "200% 200%",
+          }}
+        />
+        <div className="container-main text-center relative z-10">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
             Planning to Work Abroad?
           </h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
+          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-sm sm:text-base">
             Let our experts guide you through the process for your target destination.
           </p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-background text-foreground font-semibold rounded-full hover:shadow-xl transition-all">
-            Contact Us <ArrowRight size={16} />
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-background text-foreground font-semibold rounded-full hover:shadow-xl transition-all">
+              Contact Us <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -14,7 +14,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 pb-16 lg:pb-0">
       {/* Hero */}
       <section className="relative py-20 md:py-28 bg-nav overflow-hidden">
         <div className="relative z-10 container-main px-4 text-center">
