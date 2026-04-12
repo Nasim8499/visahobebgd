@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Briefcase, Plane, Building2, FileCheck, Globe, Users, ArrowRight, CheckCircle } from "lucide-react";
+import { Briefcase, Plane, Building2, FileCheck, Globe, Users, ArrowRight, CheckCircle, Zap } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import servicesVisa from "@/assets/services-visa.jpg";
 import servicesManpower from "@/assets/services-manpower.jpg";
@@ -16,6 +16,7 @@ const Services = () => {
       features: ["Overseas employer coordination", "Worker screening & selection", "Employment contract preparation", "Pre-departure orientation", "Post-placement follow-up"],
       destinations: "Singapore (WP, S Pass, EP), Australia (Subclass 482), Russia, Saudi Arabia, Cambodia, Belarus",
       image: servicesManpower,
+      color: "from-primary/80 to-primary/40",
     },
     {
       icon: Plane,
@@ -24,6 +25,7 @@ const Services = () => {
       features: ['"Embassy-Ready" documentation', "Work, Tourist, Business, Student visas", "Post-approval travel guidance", "Relocation assistance", "Document verification"],
       destinations: "Australia, Serbia, Moldova, and other European Gateways",
       image: servicesVisa,
+      color: "from-accent/80 to-accent/40",
     },
   ];
 
@@ -35,12 +37,32 @@ const Services = () => {
   ];
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 pb-16 lg:pb-0">
       {/* Hero */}
-      <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
-        <img src={globalNetwork} alt="Services" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-hero-overlay/70" />
+      <section className="relative h-[45vh] sm:h-[50vh] md:h-[60vh] overflow-hidden">
+        <motion.img
+          src={globalNetwork}
+          alt="Services"
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5 }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/60 to-foreground/80" />
+        {/* Animated accent line */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/60 to-primary"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "3rem" }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-primary rounded-full mb-6"
+          />
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -59,36 +81,56 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Main Services */}
+      {/* Main Services - Horizontal card layout */}
       {mainServices.map((service, i) => (
         <section key={i} className={`section-padding ${i % 2 === 0 ? "bg-background" : "bg-section-alt"}`}>
-          <div className={`container-main grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}>
-            <AnimatedSection className={i % 2 !== 0 ? "lg:order-2" : ""}>
-              <service.icon className="text-primary mb-4" size={40} />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">{service.title}</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">{service.desc}</p>
-              <ul className="space-y-2 mb-6">
-                {service.features.map((f, j) => (
-                  <li key={j} className="flex items-center gap-2 text-sm text-foreground">
-                    <CheckCircle size={16} className="text-primary flex-shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-                <p className="text-sm"><span className="font-semibold text-foreground">Target Destinations:</span> <span className="text-muted-foreground">{service.destinations}</span></p>
+          <div className="container-main">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className={`flex flex-col ${i % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} bg-card rounded-2xl overflow-hidden shadow-xl border border-border`}
+            >
+              <div className="lg:w-5/12 h-56 sm:h-64 lg:h-auto relative overflow-hidden group">
+                <motion.img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-30`} />
+                <div className="absolute top-6 left-6">
+                  <motion.div
+                    whileHover={{ rotate: 10 }}
+                    className="w-14 h-14 rounded-2xl bg-primary/90 flex items-center justify-center backdrop-blur-sm shadow-lg"
+                  >
+                    <service.icon size={28} className="text-primary-foreground" />
+                  </motion.div>
+                </div>
               </div>
-            </AnimatedSection>
-            <AnimatedSection delay={0.2} className={i % 2 !== 0 ? "lg:order-1" : ""}>
-              <motion.img
-                src={service.image}
-                alt={service.title}
-                className="rounded-2xl shadow-2xl w-full"
-                loading="lazy"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              />
-            </AnimatedSection>
+              <div className="lg:w-7/12 p-6 sm:p-8 lg:p-10">
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-card-foreground mb-4">{service.title}</h2>
+                <p className="text-muted-foreground leading-relaxed mb-6 text-sm sm:text-base">{service.desc}</p>
+                <ul className="space-y-2.5 mb-6">
+                  {service.features.map((f, j) => (
+                    <motion.li
+                      key={j}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: j * 0.08 }}
+                      className="flex items-center gap-2.5 text-sm text-foreground"
+                    >
+                      <CheckCircle size={16} className="text-primary flex-shrink-0" />
+                      {f}
+                    </motion.li>
+                  ))}
+                </ul>
+                <div className="bg-primary/5 border border-primary/15 rounded-xl p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Target Destinations:</span> <span className="text-muted-foreground">{service.destinations}</span></p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
       ))}
@@ -97,22 +139,34 @@ const Services = () => {
       <section className="section-padding bg-background">
         <div className="container-main">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
-              Additional Services
-            </h2>
+            <div className="text-center mb-12">
+              <motion.span
+                initial={{ width: 0 }}
+                whileInView={{ width: "3rem" }}
+                viewport={{ once: true }}
+                className="block h-1 bg-primary rounded-full mx-auto mb-4"
+              />
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+                Additional Services
+              </h2>
+            </div>
           </AnimatedSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {additionalServices.map((s, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ y: -6 }}
-                  className="bg-card rounded-xl p-6 shadow-lg border border-border text-center h-full"
+                  whileHover={{ y: -8, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.12)" }}
+                  className="bg-card rounded-xl p-5 sm:p-6 shadow-lg border border-border text-center h-full group cursor-pointer"
                 >
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <s.icon size={24} className="text-primary" />
-                  </div>
-                  <h3 className="font-display font-bold text-card-foreground mb-2">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  <motion.div
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4"
+                  >
+                    <s.icon size={22} className="text-primary" />
+                  </motion.div>
+                  <h3 className="font-display font-bold text-card-foreground mb-2 text-sm sm:text-base">{s.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  <div className="h-0.5 w-0 group-hover:w-full bg-primary rounded-full mt-4 mx-auto transition-all duration-500" />
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -121,17 +175,35 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary">
-        <div className="container-main text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Need Help with Your Immigration Needs?
-          </h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
-            Get in touch with our team to discuss your specific requirements and find the best solution.
-          </p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-background text-foreground font-semibold rounded-full hover:shadow-xl transition-all">
-            Get Started <ArrowRight size={16} />
-          </Link>
+      <section className="section-padding bg-primary relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+          transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+          style={{
+            backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 20px, white 20px, white 21px)",
+            backgroundSize: "200% 200%",
+          }}
+        />
+        <div className="container-main text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Zap className="mx-auto mb-4 text-primary-foreground/80" size={36} />
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+              Need Help with Your Immigration Needs?
+            </h2>
+            <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-sm sm:text-base">
+              Get in touch with our team to discuss your specific requirements and find the best solution.
+            </p>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
+              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-background text-foreground font-semibold rounded-full hover:shadow-xl transition-all">
+                Get Started <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>
