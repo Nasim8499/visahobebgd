@@ -85,15 +85,29 @@ const About = () => {
                 desc: "Appointed to fulfill the legal requirement for a locally resident Singaporean director. Dr. Ali brings extensive experience from the education and administration sectors, including roles as Chairman of the Academic Board for Birmingham Academy.",
               },
             ].map((d, i) => (
-              <AnimatedSection key={i} delay={i * 0.15}>
-                <div className="bg-card rounded-xl p-8 shadow-lg border border-border">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <Users size={28} className="text-primary" />
+              <AnimatedSection key={i} delay={i * 0.2}>
+                <motion.div
+                  whileHover={{ y: -6, boxShadow: "0 20px 40px -12px hsl(15 85% 55% / 0.15)" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="bg-card rounded-xl p-8 shadow-lg border border-border relative overflow-hidden group"
+                >
+                  {/* Animated accent bar */}
+                  <motion.div
+                    className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/60 to-primary"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: i * 0.2 + 0.3 }}
+                  />
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <motion.div whileHover={{ rotate: 10 }}>
+                      <Users size={28} className="text-primary" />
+                    </motion.div>
                   </div>
                   <h3 className="font-display font-bold text-xl text-card-foreground mb-1">{d.name}</h3>
                   <p className="text-primary font-semibold text-sm mb-3">{d.role}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
-                </div>
+                </motion.div>
               </AnimatedSection>
             ))}
           </div>
@@ -110,7 +124,13 @@ const About = () => {
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse bg-card rounded-xl overflow-hidden shadow-lg">
+              <motion.table
+                className="w-full border-collapse bg-card rounded-xl overflow-hidden shadow-lg"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
                 <thead>
                   <tr className="bg-accent text-accent-foreground">
                     <th className="px-6 py-4 text-left font-display font-bold text-sm">Service Category</th>
@@ -119,26 +139,35 @@ const About = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-border">
-                    <td className="px-6 py-5 font-semibold text-sm text-foreground align-top">Manpower Recruitment</td>
-                    <td className="px-6 py-5 text-sm text-muted-foreground leading-relaxed">
-                      Placement of skilled and semi-skilled workers, including overseas employer coordination, worker screening, and professional employment contract preparation.
-                    </td>
-                    <td className="px-6 py-5 text-sm text-muted-foreground leading-relaxed">
-                      Singapore (WP, S Pass, EP), Australia (Subclass 482), Russia, Saudi Arabia, Cambodia, and Belarus.
-                    </td>
-                  </tr>
-                  <tr className="border-t border-border bg-muted/30">
-                    <td className="px-6 py-5 font-semibold text-sm text-foreground align-top">Visa & Travel Services</td>
-                    <td className="px-6 py-5 text-sm text-muted-foreground leading-relaxed">
-                      Processing assistance for all visa types (Work, Tourist, Business, Student). We specialize in preparing "Embassy-Ready" documentation to minimize errors, coupled with post-approval guidance on travel and relocation.
-                    </td>
-                    <td className="px-6 py-5 text-sm text-muted-foreground leading-relaxed">
-                      Strategically focused on high-value destinations like Australia and emerging European Gateways like Serbia and Moldova.
-                    </td>
-                  </tr>
+                  {[
+                    {
+                      cat: "Manpower Recruitment",
+                      desc: "Placement of skilled and semi-skilled workers, including overseas employer coordination, worker screening, and professional employment contract preparation.",
+                      dest: "Singapore (WP, S Pass, EP), Australia (Subclass 482), Russia, Saudi Arabia, Cambodia, and Belarus.",
+                      bg: "",
+                    },
+                    {
+                      cat: "Visa & Travel Services",
+                      desc: 'Processing assistance for all visa types (Work, Tourist, Business, Student). We specialize in preparing "Embassy-Ready" documentation to minimize errors, coupled with post-approval guidance on travel and relocation.',
+                      dest: "Strategically focused on high-value destinations like Australia and emerging European Gateways like Serbia and Moldova.",
+                      bg: "bg-muted/30",
+                    },
+                  ].map((row, i) => (
+                    <motion.tr
+                      key={i}
+                      className={`border-t border-border ${row.bg} hover:bg-primary/5 transition-colors`}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: i * 0.15 + 0.3 }}
+                    >
+                      <td className="px-6 py-5 font-semibold text-sm text-foreground align-top">{row.cat}</td>
+                      <td className="px-6 py-5 text-sm text-muted-foreground leading-relaxed">{row.desc}</td>
+                      <td className="px-6 py-5 text-sm text-muted-foreground leading-relaxed">{row.dest}</td>
+                    </motion.tr>
+                  ))}
                 </tbody>
-              </table>
+              </motion.table>
             </div>
           </AnimatedSection>
         </div>
