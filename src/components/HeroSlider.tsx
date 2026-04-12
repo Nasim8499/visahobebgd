@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import heroClouds from "@/assets/hero-clouds.jpg";
@@ -26,11 +26,6 @@ const slides = [
 
 const HeroSlider = () => {
   const [current, setCurrent] = useState(0);
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -40,29 +35,26 @@ const HeroSlider = () => {
   }, []);
 
   return (
-    <section ref={ref} className="relative h-[90vh] md:h-screen overflow-hidden">
+    <section className="relative h-[90vh] md:h-screen overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.15 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 1, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <motion.div style={{ y: imageY }} className="absolute inset-0 -top-10 -bottom-10">
-            <img
-              src={slides[current].image}
-              alt={slides[current].title}
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+          <img
+            src={slides[current].image}
+            alt={slides[current].title}
+            className="w-full h-full object-cover scale-105"
+          />
           <div className="absolute inset-0 bg-hero-overlay/60" />
         </motion.div>
       </AnimatePresence>
 
-      <motion.div
-        style={{ y: textY, opacity }}
+      <div
         className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4"
       >
         {/* Animated rings */}
@@ -162,7 +154,7 @@ const HeroSlider = () => {
         >
           <ChevronDown className="text-background/60" size={28} />
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

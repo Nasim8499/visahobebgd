@@ -56,7 +56,7 @@ export default {
           foreground: "hsl(var(--nav-foreground))",
         },
         hero: {
-          overlay: "hsl(var(--hero-overlay))",
+          overlay: "hsl(var(--hero-overlay) / <alpha-value>)",
         },
         "section-alt": "hsl(var(--section-alt))",
         footer: {
