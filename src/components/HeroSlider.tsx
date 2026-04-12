@@ -159,7 +159,7 @@ const HeroSlider = () => {
         >
           <ChevronDown className="text-background/60" size={28} />
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };
