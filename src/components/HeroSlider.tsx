@@ -35,75 +35,129 @@ const HeroSlider = () => {
   }, []);
 
   return (
-    <section className="relative h-[90vh] md:h-screen overflow-hidden">
+    <section className="relative h-[92vh] md:h-screen overflow-hidden bg-foreground">
+      {/* Ken Burns animated background */}
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          initial={{ opacity: 0, scale: 1.15 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <img
+          <motion.img
             src={slides[current].image}
             alt={slides[current].title}
-            className="w-full h-full object-cover scale-105"
+            className="w-full h-full object-cover"
+            animate={{ scale: [1, 1.08] }}
+            transition={{ duration: 5, ease: "linear" }}
           />
-          <div className="absolute inset-0 bg-hero-overlay/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/50 to-foreground/70" />
         </motion.div>
       </AnimatePresence>
 
-      <div
-        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4"
-      >
-        {/* Animated rings */}
-        <motion.div
-          initial={{ scale: 0, rotate: -45 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 1, delay: 0.3, type: "spring" }}
-          className="absolute w-[280px] h-[280px] md:w-[450px] md:h-[450px] rounded-full border-2 border-primary/20 pointer-events-none"
-        />
-        <motion.div
-          initial={{ scale: 0, rotate: 45 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 1.2, delay: 0.5, type: "spring" }}
-          className="absolute w-[350px] h-[350px] md:w-[550px] md:h-[550px] rounded-full border border-primary/10 pointer-events-none"
-        />
-
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
+      {/* Animated gradient overlay lines */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        {[...Array(5)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-primary/30"
+            className="absolute h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
             style={{
-              left: `${15 + i * 14}%`,
-              top: `${20 + (i % 3) * 20}%`,
+              top: `${20 + i * 15}%`,
+              left: 0,
+              right: 0,
             }}
             animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 0.7, 0.3],
+              x: ["-100%", "100%"],
+              opacity: [0, 0.6, 0],
             }}
             transition={{
               repeat: Infinity,
-              duration: 3 + i * 0.5,
-              delay: i * 0.3,
+              duration: 4 + i * 0.8,
+              delay: i * 1.2,
+              ease: "linear",
             }}
           />
         ))}
+      </div>
+
+      {/* Floating light orbs */}
+      <div className="absolute inset-0 z-[2] pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: 4 + i * 3,
+              height: 4 + i * 3,
+              left: `${10 + i * 11}%`,
+              top: `${15 + (i % 4) * 18}%`,
+              background: `radial-gradient(circle, hsl(15 85% 55% / 0.5), transparent)`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 10, 0],
+              opacity: [0.2, 0.7, 0.2],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 3 + i * 0.7,
+              delay: i * 0.5,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+        {/* Animated rings */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.3, type: "spring" }}
+          className="absolute w-[250px] h-[250px] md:w-[420px] md:h-[420px] rounded-full border border-primary/15 pointer-events-none"
+        >
+          <motion.div
+            className="w-full h-full rounded-full border border-primary/10"
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+          />
+        </motion.div>
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.8, delay: 0.6, type: "spring" }}
+          className="absolute w-[320px] h-[320px] md:w-[520px] md:h-[520px] rounded-full border border-primary/8 pointer-events-none"
+        >
+          <motion.div
+            className="w-full h-full rounded-full border border-primary/5"
+            animate={{ rotate: -360 }}
+            transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+          />
+        </motion.div>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            initial={{ opacity: 0, y: 50, filter: "blur(12px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -30, filter: "blur(5px)" }}
-            transition={{ duration: 0.7 }}
+            exit={{ opacity: 0, y: -40, filter: "blur(8px)" }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="max-w-4xl"
           >
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-background max-w-4xl leading-tight mb-6">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="w-16 h-1 bg-primary rounded-full mx-auto mb-6"
+            />
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6">
               {slides[current].title}
             </h1>
-            <p className="text-background/80 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8">
+            <p className="text-background/75 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8">
               {slides[current].subtitle}
             </p>
           </motion.div>
@@ -112,18 +166,18 @@ const HeroSlider = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-4"
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
             <Link
               to="/services"
-              className="block px-8 py-3.5 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-highlight-hover transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20"
+              className="block px-8 py-3.5 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-highlight-hover transition-all shadow-lg hover:shadow-2xl hover:shadow-primary/30"
             >
               Our Services
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
             <Link
               to="/contact"
               className="block px-8 py-3.5 border-2 border-background/30 text-background font-semibold rounded-full hover:bg-background/10 backdrop-blur-sm transition-all"
@@ -134,7 +188,7 @@ const HeroSlider = () => {
         </motion.div>
 
         {/* Slide indicators */}
-        <div className="absolute bottom-20 flex gap-2">
+        <div className="absolute bottom-24 md:bottom-20 flex gap-2">
           {slides.map((_, i) => (
             <motion.button
               key={i}
@@ -150,7 +204,7 @@ const HeroSlider = () => {
         <motion.div
           animate={{ y: [0, 12, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="absolute bottom-8"
+          className="absolute bottom-10 md:bottom-8"
         >
           <ChevronDown className="text-background/60" size={28} />
         </motion.div>
