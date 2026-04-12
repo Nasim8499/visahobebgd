@@ -14,7 +14,7 @@ const MobileBottomNav = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
-      <div className="bg-nav/95 backdrop-blur-xl border-t border-nav-foreground/10 shadow-[0_-4px_20px_rgba(0,0,0,0.15)]">
+      <div className="glass border-t-0 shadow-[0_-4px_30px_rgba(0,0,0,0.08)]" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.3)' }}>
         <div className="flex items-center justify-around px-2 py-1.5 pb-[env(safe-area-inset-bottom,8px)]">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -34,14 +34,14 @@ const MobileBottomNav = () => {
                 <motion.div
                   whileTap={{ scale: 0.85 }}
                   className={`transition-colors duration-200 ${
-                    isActive ? "text-primary" : "text-nav-foreground/60"
+                    isActive ? "text-primary" : "text-foreground/40"
                   }`}
                 >
                   <item.icon size={20} strokeWidth={isActive ? 2.5 : 1.8} />
                 </motion.div>
                 <span
                   className={`text-[10px] font-medium transition-colors ${
-                    isActive ? "text-primary" : "text-nav-foreground/50"
+                    isActive ? "text-primary" : "text-foreground/35"
                   }`}
                 >
                   {item.label}

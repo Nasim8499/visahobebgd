@@ -11,7 +11,7 @@ const CountryCard = ({ name, code, description, visaTypes }: Props) => (
   <motion.div
     whileHover={{ y: -8, scale: 1.02 }}
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    className="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer h-[220px] sm:h-[260px]"
+    className="relative rounded-2xl overflow-hidden cursor-pointer h-[220px] sm:h-[260px] glass-card group"
   >
     {/* Full flag background */}
     <img
@@ -21,12 +21,12 @@ const CountryCard = ({ name, code, description, visaTypes }: Props) => (
       loading="lazy"
     />
 
-    {/* Dark gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-foreground/20 group-hover:from-foreground/95 group-hover:via-foreground/60 transition-all duration-500" />
+    {/* Frosted overlay */}
+    <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/40 to-foreground/10 group-hover:from-foreground/90 group-hover:via-foreground/50 transition-all duration-500" />
 
-    {/* Animated shine sweep */}
+    {/* Shine sweep */}
     <motion.div
-      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12"
       initial={{ x: "-150%" }}
       whileHover={{ x: "150%" }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -34,7 +34,6 @@ const CountryCard = ({ name, code, description, visaTypes }: Props) => (
 
     {/* Content */}
     <div className="relative z-10 flex flex-col justify-end h-full p-4 sm:p-5">
-      {/* Small flag icon + name */}
       <div className="flex items-center gap-2.5 mb-2">
         <motion.img
           src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`}
@@ -51,7 +50,6 @@ const CountryCard = ({ name, code, description, visaTypes }: Props) => (
         {description}
       </p>
 
-      {/* Visa type tags */}
       <div className="flex flex-wrap gap-1.5">
         {visaTypes.map((v) => (
           <motion.span
