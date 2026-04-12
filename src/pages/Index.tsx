@@ -6,6 +6,7 @@ import HeroSlider from "@/components/HeroSlider";
 import AnimatedSection from "@/components/AnimatedSection";
 import CounterAnimation from "@/components/CounterAnimation";
 import ParallaxSection from "@/components/ParallaxSection";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import aboutTeam from "@/assets/about-team.jpg";
 import servicesVisa from "@/assets/services-visa.jpg";
 import servicesManpower from "@/assets/services-manpower.jpg";
@@ -236,6 +237,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+      {/* Testimonials */}
+      <TestimonialsCarousel />
 
       {/* Newsletter */}
       <section className="section-padding bg-nav">
