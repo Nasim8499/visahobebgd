@@ -9,52 +9,55 @@ interface Props {
 
 const CountryCard = ({ name, code, description, visaTypes }: Props) => (
   <motion.div
-    whileHover={{ y: -10, scale: 1.03 }}
+    whileHover={{ y: -8, scale: 1.02 }}
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    className="bg-card rounded-xl shadow-lg overflow-hidden border border-border hover:shadow-2xl transition-shadow group cursor-pointer relative"
+    className="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer h-[220px] sm:h-[260px]"
   >
-    {/* Animated wave top bar */}
-    <div className="relative h-2 overflow-hidden bg-primary/20">
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-primary via-primary/70 to-primary"
-        animate={{ x: ["-100%", "100%"] }}
-        transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-      />
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"
-        animate={{ x: ["100%", "-100%"] }}
-        transition={{ repeat: Infinity, duration: 2.2, ease: "linear" }}
-      />
-    </div>
-    <div className="p-4 sm:p-6">
-      <div className="flex items-center gap-3 mb-3">
-        <motion.div
-          whileHover={{ scale: 1.15, rotate: 5 }}
-          transition={{ type: "spring" }}
-          className="relative"
-        >
-          <img
-            src={`https://flagcdn.com/w80/${code.toLowerCase()}.png`}
-            alt={`${name} flag`}
-            className="w-12 h-8 rounded object-cover shadow-md"
-            loading="lazy"
-          />
-          {/* Flag glow effect */}
-          <motion.div
-            className="absolute inset-0 rounded shadow-lg"
-            animate={{ boxShadow: ["0 0 0px hsl(15 85% 55% / 0)", "0 0 12px hsl(15 85% 55% / 0.3)", "0 0 0px hsl(15 85% 55% / 0)"] }}
-            transition={{ repeat: Infinity, duration: 2.5 }}
-          />
-        </motion.div>
-        <h3 className="font-display font-bold text-base sm:text-lg text-foreground group-hover:text-primary transition-colors">{name}</h3>
+    {/* Full flag background */}
+    <img
+      src={`https://flagcdn.com/w640/${code.toLowerCase()}.png`}
+      alt={`${name} flag`}
+      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      loading="lazy"
+    />
+
+    {/* Dark gradient overlay */}
+    <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-foreground/20 group-hover:from-foreground/95 group-hover:via-foreground/60 transition-all duration-500" />
+
+    {/* Animated shine sweep */}
+    <motion.div
+      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+      initial={{ x: "-150%" }}
+      whileHover={{ x: "150%" }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+    />
+
+    {/* Content */}
+    <div className="relative z-10 flex flex-col justify-end h-full p-4 sm:p-5">
+      {/* Small flag icon + name */}
+      <div className="flex items-center gap-2.5 mb-2">
+        <motion.img
+          src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`}
+          alt=""
+          className="w-8 h-5 rounded-sm object-cover shadow-md border border-white/20"
+          whileHover={{ scale: 1.15 }}
+        />
+        <h3 className="font-display font-bold text-base sm:text-lg text-white drop-shadow-lg">
+          {name}
+        </h3>
       </div>
-      <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3">{description}</p>
+
+      <p className="text-[11px] sm:text-xs text-white/75 leading-relaxed line-clamp-2 mb-3">
+        {description}
+      </p>
+
+      {/* Visa type tags */}
       <div className="flex flex-wrap gap-1.5">
         {visaTypes.map((v) => (
           <motion.span
             key={v}
             whileHover={{ scale: 1.1 }}
-            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold bg-white/15 backdrop-blur-sm text-white rounded-full border border-white/20 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-colors cursor-pointer"
           >
             {v}
           </motion.span>
