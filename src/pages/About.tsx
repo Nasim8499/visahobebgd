@@ -7,7 +7,7 @@ import globalNetwork from "@/assets/global-network.jpg";
 
 const About = () => {
   return (
-    <div className="pt-20">
+    <div className="pt-20 pb-16 lg:pb-0">
       {/* Hero */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <img src={globalNetwork} alt="Global network" className="absolute inset-0 w-full h-full object-cover" />
