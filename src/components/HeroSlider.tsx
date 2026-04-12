@@ -44,25 +44,22 @@ const HeroSlider = () => {
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.15 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 1, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <motion.div style={{ y: imageY }} className="absolute inset-0 -top-10 -bottom-10">
-            <img
-              src={slides[current].image}
-              alt={slides[current].title}
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+          <img
+            src={slides[current].image}
+            alt={slides[current].title}
+            className="w-full h-full object-cover scale-105"
+          />
           <div className="absolute inset-0 bg-hero-overlay/60" />
         </motion.div>
       </AnimatePresence>
 
-      <motion.div
-        style={{ y: textY, opacity }}
+      <div
         className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4"
       >
         {/* Animated rings */}
