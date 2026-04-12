@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ["Playfair Display", "serif"],
         body: ["Inter", "sans-serif"],
+        nav: ["Poppins", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,7 +53,8 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         nav: {
-          DEFAULT: "hsl(var(--nav-bg))",
+          from: "hsl(var(--nav-from))",
+          to: "hsl(var(--nav-to))",
           foreground: "hsl(var(--nav-foreground))",
         },
         hero: {
