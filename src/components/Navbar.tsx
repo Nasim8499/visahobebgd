@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, Info, Briefcase, Globe, Newspaper, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Home, Info, Briefcase, Globe, Newspaper, Phone, ChevronDown, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const navLinks = [
   { label: "Home", path: "/", icon: Home },
@@ -26,6 +27,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -40,12 +42,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 font-nav transition-all duration-300 ${
-        scrolled ? "bg-[hsl(222,47%,11%)/0.95]" : "bg-[hsl(222,47%,11%)/0.85]"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 font-nav transition-all duration-300`}
       style={{
-        backdropFilter: "blur(24px) saturate(150%)",
-        WebkitBackdropFilter: "blur(24px) saturate(150%)",
+        background: `linear-gradient(135deg, hsl(var(--nav-from)), hsl(var(--nav-to)))`,
+        backdropFilter: scrolled ? "blur(24px) saturate(150%)" : "blur(16px)",
+        WebkitBackdropFilter: scrolled ? "blur(24px) saturate(150%)" : "blur(16px)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}
     >
@@ -97,8 +98,6 @@ const Navbar = () => {
                       }`}
                     />
                   )}
-
-                  {/* Active indicator */}
                   {isActive && (
                     <motion.div
                       layoutId="navActiveBar"
@@ -118,10 +117,9 @@ const Navbar = () => {
                       transition={{ duration: 0.18 }}
                       className="absolute top-full left-0 mt-1.5 w-48 rounded-xl overflow-hidden"
                       style={{
-                        background: "hsl(222 47% 13% / 0.97)",
+                        background: "hsl(var(--nav-from) / 0.97)",
                         backdropFilter: "blur(20px)",
                         WebkitBackdropFilter: "blur(20px)",
-                        borderBottom: "1px solid rgba(255,255,255,0.06)",
                         border: "1px solid rgba(255,255,255,0.06)",
                       }}
                     >
@@ -144,30 +142,58 @@ const Navbar = () => {
             );
           })}
 
-          <Link to="/contact" className="ml-4">
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="ml-2 w-9 h-9 rounded-lg flex items-center justify-center text-white/50 hover:text-white hover:bg-white/[0.06] transition-colors duration-200"
+            aria-label="Toggle theme"
+          >
+            <AnimatePresence mode="wait">
+              {theme === "light" ? (
+                <motion.div key="moon" initial={{ opacity: 0, rotate: -90, scale: 0.5 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, rotate: 90, scale: 0.5 }} transition={{ duration: 0.2 }}>
+                  <Moon size={16} strokeWidth={2} />
+                </motion.div>
+              ) : (
+                <motion.div key="sun" initial={{ opacity: 0, rotate: 90, scale: 0.5 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, rotate: -90, scale: 0.5 }} transition={{ duration: 0.2 }}>
+                  <Sun size={16} strokeWidth={2} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+
+          <Link to="/contact" className="ml-3">
             <span className="inline-block px-5 py-2 text-[13px] font-semibold rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors duration-200">
               Get Started
             </span>
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="lg:hidden text-white/80 p-2 rounded-lg hover:bg-white/[0.06] transition-colors"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          <AnimatePresence mode="wait">
-            {mobileOpen ? (
-              <motion.div key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.15 }}>
-                <X size={22} />
-              </motion.div>
-            ) : (
-              <motion.div key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.15 }}>
-                <Menu size={22} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </button>
+        {/* Mobile right side */}
+        <div className="flex lg:hidden items-center gap-1">
+          <button
+            onClick={toggleTheme}
+            className="text-white/60 p-2 rounded-lg hover:bg-white/[0.06] transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <button
+            className="text-white/80 p-2 rounded-lg hover:bg-white/[0.06] transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            <AnimatePresence mode="wait">
+              {mobileOpen ? (
+                <motion.div key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.15 }}>
+                  <X size={22} />
+                </motion.div>
+              ) : (
+                <motion.div key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.15 }}>
+                  <Menu size={22} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -180,7 +206,7 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="lg:hidden overflow-hidden"
             style={{
-              background: "hsl(222 47% 11% / 0.98)",
+              background: "hsl(var(--nav-from) / 0.98)",
               borderTop: "1px solid rgba(255,255,255,0.04)",
             }}
           >
