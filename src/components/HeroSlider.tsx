@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MapPin, Users } from "lucide-react";
 import heroClouds from "@/assets/hero-clouds.jpg";
 import globalNetwork from "@/assets/global-network.jpg";
 import servicesManpower from "@/assets/services-manpower.jpg";
@@ -11,16 +11,19 @@ const slides = [
     image: heroClouds,
     title: "A better way to manage global immigration.",
     subtitle: "Delivering seamless corporate immigration services to manage your global workforce.",
+    tag: "Immigration",
   },
   {
     image: globalNetwork,
     title: "Connecting talent across 180+ countries.",
     subtitle: "Strategic manpower recruitment and visa solutions for businesses worldwide.",
+    tag: "Global Reach",
   },
   {
     image: servicesManpower,
     title: "Your workforce, our expertise.",
     subtitle: "Skilled and semi-skilled worker placement with end-to-end support.",
+    tag: "Recruitment",
   },
 ];
 
@@ -40,9 +43,9 @@ const HeroSlider = () => {
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.15 }}
+          initial={{ opacity: 0, scale: 1.12 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
+          exit={{ opacity: 0, scale: 1.04 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
@@ -50,64 +53,36 @@ const HeroSlider = () => {
             src={slides[current].image}
             alt={slides[current].title}
             className="w-full h-full object-cover"
-            animate={{ scale: [1, 1.08] }}
+            animate={{ scale: [1, 1.06] }}
             transition={{ duration: 5, ease: "linear" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(150,30%,8%)]/40 via-[hsl(150,30%,8%)]/30 to-background/90" />
         </motion.div>
       </AnimatePresence>
-
-      {/* Floating glass orbs */}
-      <div className="absolute inset-0 z-[2] pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: 60 + i * 40,
-              height: 60 + i * 40,
-              left: `${10 + i * 14}%`,
-              top: `${20 + (i % 3) * 20}%`,
-              background: `radial-gradient(circle, hsl(230 75% 60% / 0.08), hsl(260 55% 58% / 0.04), transparent)`,
-              border: '1px solid hsl(0 0% 100% / 0.1)',
-              backdropFilter: 'blur(2px)',
-            }}
-            animate={{
-              y: [0, -20, 0],
-              x: [0, 8, 0],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 4 + i * 0.8,
-              delay: i * 0.6,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            initial={{ opacity: 0, y: 50, filter: "blur(12px)" }}
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -40, filter: "blur(8px)" }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            exit={{ opacity: 0, y: -30, filter: "blur(6px)" }}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="max-w-4xl"
           >
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="w-16 h-1 bg-primary rounded-full mx-auto mb-6"
-            />
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 text-primary-foreground text-xs font-semibold mb-6 backdrop-blur-sm border border-primary/30"
+            >
+              <MapPin size={12} /> {slides[current].tag}
+            </motion.span>
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
               {slides[current].title}
             </h1>
-            <p className="text-foreground/60 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8">
+            <p className="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8">
               {slides[current].subtitle}
             </p>
           </motion.div>
@@ -116,21 +91,21 @@ const HeroSlider = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4"
+          transition={{ delay: 0.5 }}
+          className="flex flex-col sm:flex-row gap-3"
         >
-          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
             <Link
               to="/services"
-              className="block px-8 py-3.5 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-highlight-hover transition-all shadow-lg hover:shadow-2xl hover:shadow-primary/30"
+              className="block px-8 py-3.5 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-highlight-hover transition-all shadow-lg"
             >
               Our Services
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
             <Link
               to="/contact"
-              className="block px-8 py-3.5 glass-card font-semibold rounded-xl text-foreground hover:bg-white/70 transition-all"
+              className="block px-8 py-3.5 bg-white/15 backdrop-blur-md text-white font-semibold rounded-full border border-white/20 hover:bg-white/25 transition-all"
             >
               Get in Touch
             </Link>
@@ -140,24 +115,35 @@ const HeroSlider = () => {
         {/* Slide indicators */}
         <div className="absolute bottom-24 md:bottom-20 flex gap-2">
           {slides.map((_, i) => (
-            <motion.button
+            <button
               key={i}
               onClick={() => setCurrent(i)}
-              whileHover={{ scale: 1.2 }}
-              className={`h-3 rounded-full transition-all duration-500 ${
-                i === current ? "bg-primary w-10" : "bg-foreground/20 w-3 hover:bg-foreground/40"
+              className={`h-2.5 rounded-full transition-all duration-500 ${
+                i === current ? "bg-primary w-10" : "bg-white/30 w-2.5 hover:bg-white/50"
               }`}
             />
           ))}
         </div>
 
         <motion.div
-          animate={{ y: [0, 12, 0] }}
+          animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           className="absolute bottom-10 md:bottom-8"
         >
-          <ChevronDown className="text-foreground/40" size={28} />
+          <ChevronDown className="text-white/40" size={28} />
         </motion.div>
+      </div>
+
+      {/* Bottom info pills */}
+      <div className="absolute bottom-28 md:bottom-24 left-1/2 -translate-x-1/2 z-10 hidden md:flex gap-3">
+        {[
+          { icon: MapPin, text: "180+ Countries" },
+          { icon: Users, text: "5000+ Placed" },
+        ].map((item, i) => (
+          <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/80 text-xs font-medium">
+            <item.icon size={13} /> {item.text}
+          </div>
+        ))}
       </div>
     </section>
   );

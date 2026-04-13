@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
 
 interface Props {
   name: string;
@@ -9,9 +10,9 @@ interface Props {
 
 const CountryCard = ({ name, code, description, visaTypes }: Props) => (
   <motion.div
-    whileHover={{ y: -8, scale: 1.02 }}
+    whileHover={{ y: -6 }}
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    className="relative rounded-2xl overflow-hidden cursor-pointer h-[220px] sm:h-[260px] glass-card group"
+    className="relative rounded-3xl overflow-hidden cursor-pointer h-[240px] sm:h-[280px] group"
   >
     {/* Full flag background */}
     <img
@@ -21,44 +22,34 @@ const CountryCard = ({ name, code, description, visaTypes }: Props) => (
       loading="lazy"
     />
 
-    {/* Frosted overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/40 to-foreground/10 group-hover:from-foreground/90 group-hover:via-foreground/50 transition-all duration-500" />
-
-    {/* Shine sweep */}
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12"
-      initial={{ x: "-150%" }}
-      whileHover={{ x: "150%" }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-    />
+    {/* Dark gradient overlay */}
+    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(150,30%,6%)]/90 via-[hsl(150,30%,8%)]/50 to-transparent group-hover:from-[hsl(150,30%,6%)]/95 transition-all duration-500" />
 
     {/* Content */}
     <div className="relative z-10 flex flex-col justify-end h-full p-4 sm:p-5">
       <div className="flex items-center gap-2.5 mb-2">
-        <motion.img
+        <img
           src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`}
           alt=""
-          className="w-8 h-5 rounded-sm object-cover shadow-md border border-white/20"
-          whileHover={{ scale: 1.15 }}
+          className="w-7 h-[18px] rounded-sm object-cover shadow-md border border-white/20"
         />
         <h3 className="font-display font-bold text-base sm:text-lg text-white drop-shadow-lg">
           {name}
         </h3>
       </div>
 
-      <p className="text-[11px] sm:text-xs text-white/75 leading-relaxed line-clamp-2 mb-3">
+      <p className="text-[11px] sm:text-xs text-white/65 leading-relaxed line-clamp-2 mb-3">
         {description}
       </p>
 
       <div className="flex flex-wrap gap-1.5">
         {visaTypes.map((v) => (
-          <motion.span
+          <span
             key={v}
-            whileHover={{ scale: 1.1 }}
-            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold bg-white/15 backdrop-blur-sm text-white rounded-full border border-white/20 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-colors cursor-pointer"
+            className="px-2.5 py-1 text-[9px] sm:text-[10px] font-medium bg-primary/25 backdrop-blur-sm text-primary-foreground rounded-full border border-primary/30 group-hover:bg-primary/40 transition-colors"
           >
             {v}
-          </motion.span>
+          </span>
         ))}
       </div>
     </div>

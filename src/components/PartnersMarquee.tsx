@@ -15,29 +15,29 @@ const PartnersMarquee = () => {
   const doubled = [...partners, ...partners];
 
   return (
-    <section className="py-12 bg-background overflow-hidden border-y border-border/50">
+    <section className="py-10 bg-section-alt overflow-hidden">
       <div className="container-main mb-6">
-        <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+        <p className="text-center text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground">
           Trusted By & Affiliated With
         </p>
       </div>
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-section-alt to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-section-alt to-transparent z-10" />
         <motion.div
-          className="flex gap-8 items-center"
+          className="flex gap-6 items-center"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         >
           {doubled.map((p, i) => (
             <div
               key={i}
-              className="flex-shrink-0 flex items-center gap-3 px-6 py-3 glass-card rounded-2xl min-w-[180px]"
+              className="flex-shrink-0 flex items-center gap-3 px-5 py-3 bg-card rounded-2xl border border-border shadow-sm min-w-[170px]"
             >
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <span className="font-display font-bold text-primary text-xs">{p.abbr}</span>
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <span className="font-display font-bold text-primary text-[10px]">{p.abbr}</span>
               </div>
-              <span className="text-sm font-medium text-foreground whitespace-nowrap">{p.name}</span>
+              <span className="text-xs font-medium text-foreground whitespace-nowrap">{p.name}</span>
             </div>
           ))}
         </motion.div>
