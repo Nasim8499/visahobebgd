@@ -22,12 +22,12 @@ const Destinations = () => {
       {/* Hero */}
       <section className="relative h-[45vh] sm:h-[50vh] md:h-[60vh] overflow-hidden">
         <motion.img src={globalNetwork} alt="Global destinations" className="absolute inset-0 w-full h-full object-cover" initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 1.5 }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/50 to-background/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(230,35%,8%)]/60 via-[hsl(262,40%,15%)]/40 to-background/90" />
         <motion.div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay: 0.5 }} />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-          <motion.div initial={{ width: 0 }} animate={{ width: "3rem" }} transition={{ duration: 0.6 }} className="h-1 bg-primary rounded-full mb-6" />
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">Our Destinations</motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-foreground/60 max-w-2xl text-sm md:text-base">
+          <motion.div initial={{ width: 0 }} animate={{ width: "3rem" }} transition={{ duration: 0.6 }} className="h-1 bg-accent rounded-full mb-6" />
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="font-display text-3xl md:text-5xl font-bold text-white mb-4">Our Destinations</motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-white/60 max-w-2xl text-sm md:text-base">
             We serve talent placement across 8+ strategic destinations worldwide.
           </motion.p>
         </div>
@@ -38,7 +38,7 @@ const Destinations = () => {
         <div className="container-main">
           <AnimatedSection>
             <div className="text-center mb-12">
-              <motion.span initial={{ width: 0 }} whileInView={{ width: "3rem" }} viewport={{ once: true }} className="block h-1 bg-primary rounded-full mx-auto mb-4" />
+              <motion.span initial={{ width: 0 }} whileInView={{ width: "3rem" }} viewport={{ once: true }} className="block h-1 bg-accent rounded-full mx-auto mb-4" />
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">Target Countries</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">Each destination has unique requirements. Our team ensures embassy-ready documentation and compliance for every corridor.</p>
             </div>
@@ -54,12 +54,12 @@ const Destinations = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary relative overflow-hidden">
+      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(262,70%,45%)] to-primary relative overflow-hidden">
         <div className="container-main text-center relative z-10">
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Planning to Work Abroad?</h2>
           <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-sm sm:text-base">Let our experts guide you through the process for your target destination.</p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
-            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-foreground font-semibold rounded-xl hover:shadow-xl transition-all">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-semibold rounded-xl hover:shadow-xl transition-all">
               Contact Us <ArrowRight size={16} />
             </Link>
           </motion.div>

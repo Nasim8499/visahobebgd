@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Globe, Users, Shield, ArrowRight, Briefcase, Plane, Building2, ChevronRight, Sparkles, CheckCircle, MapPin, Calendar } from "lucide-react";
+import { Globe, Users, Shield, ArrowRight, Briefcase, Plane, Building2, ChevronRight, CheckCircle, Calendar } from "lucide-react";
 import { useRef } from "react";
 import HeroSlider from "@/components/HeroSlider";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -70,9 +70,9 @@ const Index = () => {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="bg-card rounded-3xl p-6 sm:p-7 cursor-pointer group border border-border shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-card rounded-3xl p-6 sm:p-7 cursor-pointer group border border-border hover:border-primary/30 shadow-sm hover:shadow-lg hover:shadow-primary/10 transition-all"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center mb-4 group-hover:from-primary/30 group-hover:to-accent/20 transition-colors">
                     <f.icon className="text-primary" size={24} />
                   </div>
                   <h3 className="font-display font-bold text-base sm:text-lg mb-2 text-foreground">{f.title}</h3>
@@ -85,10 +85,10 @@ const Index = () => {
           <AnimatedSection className="text-center mt-14">
             <p className="text-muted-foreground max-w-3xl mx-auto mb-6 text-sm sm:text-base">
               We bring together smart, friendly legal teams and smart, friendly technology
-              <span className="text-primary font-semibold"> to make immigration easier for companies and the global talent they depend on.</span>
+              <span className="text-gradient font-semibold"> to make immigration easier for companies and the global talent they depend on.</span>
             </p>
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-              <Link to="/about" className="inline-flex items-center gap-2 px-7 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-highlight-hover transition-all shadow-md">
+              <Link to="/about" className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all">
                 Learn More <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -102,7 +102,7 @@ const Index = () => {
       <section ref={parallaxRef} className="relative py-20 md:py-28 overflow-hidden">
         <motion.div style={{ y: bgY }} className="absolute inset-0 -top-20 -bottom-20">
           <img src={globalNetwork} alt="Global network" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-[hsl(150,30%,8%)]/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(230,35%,8%)]/90 via-[hsl(262,60%,20%)]/70 to-[hsl(230,35%,8%)]/90" />
         </motion.div>
         <div className="relative z-10 container-main">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -117,9 +117,9 @@ const Index = () => {
       <section className="section-padding bg-background">
         <div className="container-main grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <AnimatedSection>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">Global Reach</span>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/15 to-accent/15 text-primary text-xs font-semibold mb-4">Global Reach</span>
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-5">
-              Helping you win the race for global talent across 180+ countries.
+              Helping you win the race for <span className="text-gradient">global talent</span> across 180+ countries.
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4 text-sm sm:text-base">
               Virtually any business can benefit from using VisaHOBe to access, manage, or optimize their global talent.
@@ -133,18 +133,19 @@ const Index = () => {
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
             <div className="relative">
-              <img src={aboutTeam} alt="Global talent team" className="rounded-3xl shadow-lg w-full" loading="lazy" width={800} height={600} />
+              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-primary/20 via-transparent to-accent/20 blur-xl" />
+              <img src={aboutTeam} alt="Global talent team" className="rounded-3xl shadow-lg w-full relative" loading="lazy" width={800} height={600} />
             </div>
           </AnimatedSection>
         </div>
       </section>
 
       {/* News Alerts */}
-      <section className="section-padding bg-[hsl(var(--footer-bg))]">
+      <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(230,30%,12%)] to-[hsl(262,30%,12%)]">
         <div className="container-main">
           <AnimatedSection>
             <div className="text-center mb-10">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/15 text-primary-foreground text-xs font-semibold mb-4">Latest Updates</span>
+              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-xs font-semibold mb-4">Latest Updates</span>
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Immigration News Alerts
               </h2>
@@ -155,14 +156,14 @@ const Index = () => {
               <AnimatedSection key={i} delay={i * 0.05}>
                 <motion.div
                   whileHover={{ y: -3 }}
-                  className="bg-white/[0.06] rounded-2xl p-4 sm:p-5 h-full flex flex-col group cursor-pointer border border-white/[0.06] hover:bg-white/[0.1] transition-all"
+                  className="bg-white/[0.06] rounded-2xl p-4 sm:p-5 h-full flex flex-col group cursor-pointer border border-white/[0.06] hover:bg-white/[0.1] hover:border-primary/30 transition-all"
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-primary/25 text-primary-foreground rounded-full">{n.tag}</span>
+                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-accent/25 text-accent rounded-full">{n.tag}</span>
                     <span className="text-[10px] sm:text-xs text-white/35 flex items-center gap-1"><Calendar size={10} />{n.date}</span>
                   </div>
                   <h3 className="font-display font-semibold text-white text-xs sm:text-sm leading-snug group-hover:text-primary transition-colors flex-1">{n.title}</h3>
-                  <Link to="/insights" className="mt-3 inline-flex items-center gap-1 text-primary text-xs font-semibold group-hover:gap-2 transition-all">
+                  <Link to="/insights" className="mt-3 inline-flex items-center gap-1 text-accent text-xs font-semibold group-hover:gap-2 transition-all">
                     Read More <ChevronRight size={12} />
                   </Link>
                 </motion.div>
@@ -170,7 +171,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link to="/insights" className="inline-flex items-center gap-2 px-7 py-2.5 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-primary-foreground transition-all text-sm">
+            <Link to="/insights" className="inline-flex items-center gap-2 px-7 py-2.5 border-2 border-accent text-accent font-semibold rounded-full hover:bg-accent hover:text-accent-foreground transition-all text-sm">
               All Alerts <ArrowRight size={14} />
             </Link>
           </div>
@@ -195,12 +196,13 @@ const Index = () => {
               <AnimatedSection key={i} delay={i * 0.1}>
                 <motion.div
                   whileHover={{ y: -3 }}
-                  className={`flex flex-col ${i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} bg-card rounded-3xl overflow-hidden group cursor-pointer border border-border shadow-sm hover:shadow-md transition-shadow`}
+                  className={`flex flex-col ${i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} bg-card rounded-3xl overflow-hidden group cursor-pointer border border-border hover:border-primary/20 shadow-sm hover:shadow-lg hover:shadow-primary/5 transition-all`}
                 >
                   <div className="md:w-2/5 h-48 sm:h-56 md:h-auto relative overflow-hidden">
                     <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="absolute top-4 left-4">
-                      <div className="w-11 h-11 rounded-2xl bg-primary/90 flex items-center justify-center shadow-md">
+                      <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary/90 to-accent/70 flex items-center justify-center shadow-md">
                         <s.icon className="text-primary-foreground" size={22} />
                       </div>
                     </div>
@@ -210,7 +212,7 @@ const Index = () => {
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {s.highlights.map((h) => (
-                        <span key={h} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/8 rounded-full text-xs font-medium text-primary border border-primary/15">
+                        <span key={h} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary/8 to-accent/8 rounded-full text-xs font-medium text-primary border border-primary/15">
                           <CheckCircle size={11} /> {h}
                         </span>
                       ))}
@@ -225,7 +227,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-10">
-            <Link to="/services" className="inline-flex items-center gap-2 px-7 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-highlight-hover transition-all shadow-md">
+            <Link to="/services" className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all">
               View All Services <ArrowRight size={16} />
             </Link>
           </div>
@@ -235,7 +237,7 @@ const Index = () => {
       <TestimonialsCarousel />
 
       {/* Newsletter */}
-      <section className="section-padding bg-[hsl(var(--footer-bg))]">
+      <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(230,30%,12%)] to-[hsl(262,30%,12%)]">
         <div className="container-main">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <AnimatedSection>
@@ -251,7 +253,7 @@ const Index = () => {
                 </div>
                 <input type="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-xl bg-white/8 text-white placeholder:text-white/35 border border-white/10 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm" />
                 <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} type="submit"
-                  className="px-7 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-highlight-hover transition-all shadow-md">
+                  className="px-7 py-3 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-accent/25 transition-all">
                   Subscribe
                 </motion.button>
               </form>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, Info, Briefcase, Globe, Newspaper, Phone, ChevronDown, Sun, Moon } from "lucide-react";
+import { Home, Info, Briefcase, Globe, Newspaper, Phone, ChevronDown, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 
@@ -23,7 +23,6 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
@@ -36,13 +35,12 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
     setActiveDropdown(null);
   }, [location.pathname]);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 font-nav transition-all duration-300`}
+      className="fixed top-0 left-0 right-0 z-50 font-nav transition-all duration-300"
       style={{
         background: `linear-gradient(135deg, hsl(var(--nav-from)), hsl(var(--nav-to)))`,
         backdropFilter: scrolled ? "blur(24px) saturate(150%)" : "blur(16px)",
@@ -58,7 +56,7 @@ const Navbar = () => {
             <span className="font-semibold text-white text-sm leading-tight tracking-wide">
               VisaHOBe Pte. Ltd.
             </span>
-            <span className="text-[10px] text-white/40 tracking-[0.12em] uppercase">
+            <span className="text-[10px] text-white/40 tracking-[0.12em] uppercase hidden sm:block">
               Global Manpower Recruiter
             </span>
           </div>
@@ -160,13 +158,13 @@ const Navbar = () => {
           </button>
 
           <Link to="/contact" className="ml-3">
-            <span className="inline-block px-5 py-2 text-[13px] font-semibold rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors duration-200">
+            <span className="inline-block px-5 py-2 text-[13px] font-semibold rounded-lg text-primary-foreground bg-primary hover:bg-highlight-hover transition-colors duration-200">
               Get Started
             </span>
           </Link>
         </div>
 
-        {/* Mobile right side */}
+        {/* Mobile: only theme toggle */}
         <div className="flex lg:hidden items-center gap-1">
           <button
             onClick={toggleTheme}
@@ -175,87 +173,8 @@ const Navbar = () => {
           >
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
-          <button
-            className="text-white/80 p-2 rounded-lg hover:bg-white/[0.06] transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            <AnimatePresence mode="wait">
-              {mobileOpen ? (
-                <motion.div key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.15 }}>
-                  <X size={22} />
-                </motion.div>
-              ) : (
-                <motion.div key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.15 }}>
-                  <Menu size={22} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="lg:hidden overflow-hidden"
-            style={{
-              background: "hsl(var(--nav-from) / 0.98)",
-              borderTop: "1px solid rgba(255,255,255,0.04)",
-            }}
-          >
-            <div className="px-4 py-3 space-y-0.5">
-              {navLinks.map((link, i) => {
-                const isActive = location.pathname === link.path;
-                const Icon = link.icon;
-                return (
-                  <motion.div
-                    key={link.path}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.04, duration: 0.2 }}
-                  >
-                    <Link
-                      to={link.path}
-                      onClick={() => setMobileOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-150 ${
-                        isActive
-                          ? "text-white bg-white/[0.08]"
-                          : "text-white/45 hover:text-white/80 hover:bg-white/[0.03]"
-                      }`}
-                    >
-                      <Icon size={17} strokeWidth={1.8} />
-                      <span>{link.label}</span>
-                      {isActive && (
-                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
-                      )}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.2 }}
-                className="pt-2 pb-1"
-              >
-                <Link
-                  to="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-3 py-3 text-sm font-semibold rounded-lg text-center text-white bg-primary hover:bg-primary/90 transition-colors"
-                >
-                  Get Started
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 };
