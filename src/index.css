@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -36,8 +36,9 @@
 
     --radius: 0.75rem;
 
-    --nav-bg: 225 30% 98%;
-    --nav-foreground: 225 20% 18%;
+    --nav-from: 222 47% 11%;
+    --nav-to: 217 33% 17%;
+    --nav-foreground: 210 40% 98%;
     --hero-overlay: 225 40% 12%;
     --section-alt: 225 25% 97%;
     --footer-bg: 225 25% 14%;
