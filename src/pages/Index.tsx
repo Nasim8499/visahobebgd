@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Globe, Users, Shield, ArrowRight, Briefcase, Plane, Building2, ChevronRight, CheckCircle, Calendar } from "lucide-react";
+import { Globe, Users, Shield, ArrowRight, Briefcase, Plane, Building2, ChevronRight, CheckCircle, Calendar, GraduationCap } from "lucide-react";
 import { useRef } from "react";
 import HeroSlider from "@/components/HeroSlider";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -12,10 +12,27 @@ import servicesVisa from "@/assets/services-visa.jpg";
 import servicesManpower from "@/assets/services-manpower.jpg";
 import globalNetwork from "@/assets/global-network.jpg";
 
-const features = [
-  { icon: Globe, title: "Global Immigration Services", desc: "Comprehensive immigration solutions across 180+ countries with expert guidance at every step." },
-  { icon: Users, title: "User-Friendly Technology", desc: "Our cutting-edge digital platform helps simplify complex visa and immigration processes." },
-  { icon: Shield, title: "Decades of Expertise", desc: "A team of experienced professionals committed to delivering results with integrity and compliance." },
+const services = [
+  {
+    icon: Briefcase, title: "Manpower Recruitment",
+    desc: "Placement of skilled and semi-skilled workers with overseas employer coordination.",
+    image: servicesManpower,
+  },
+  {
+    icon: Plane, title: "Visa & Travel Services",
+    desc: 'Embassy-ready documentation and processing assistance for all visa types.',
+    image: servicesVisa,
+  },
+  {
+    icon: Building2, title: "Program Management",
+    desc: "End-to-end program management for multi-country immigration needs.",
+    image: aboutTeam,
+  },
+  {
+    icon: GraduationCap, title: "Training & Compliance",
+    desc: "Pre-departure orientation, skill training, and regulatory compliance support.",
+    image: globalNetwork,
+  },
 ];
 
 const newsAlerts = [
@@ -27,29 +44,17 @@ const newsAlerts = [
   { date: "Mar 10, 2026", tag: "Europe", title: "EU Final Approval of Talent Platform for Third-Country Workers" },
 ];
 
-const services = [
-  {
-    icon: Briefcase, title: "Manpower Recruitment",
-    desc: "Placement of skilled and semi-skilled workers with overseas employer coordination and professional contract preparation.",
-    image: servicesManpower, highlights: ["Employer Coordination", "Worker Screening", "Contract Preparation"],
-  },
-  {
-    icon: Plane, title: "Visa & Travel Services",
-    desc: 'Processing assistance for all visa types. We specialize in preparing "Embassy-Ready" documentation.',
-    image: servicesVisa, highlights: ["Embassy-Ready Docs", "All Visa Types", "Travel Guidance"],
-  },
-  {
-    icon: Building2, title: "Strategic Program Management",
-    desc: "Comprehensive program management for organizations with complex, multi-country immigration needs.",
-    image: aboutTeam, highlights: ["Multi-Country", "Compliance", "End-to-End"],
-  },
-];
-
 const stats = [
   { end: 180, suffix: "+", label: "Countries Covered" },
   { end: 5000, suffix: "+", label: "Workers Placed" },
   { end: 98, suffix: "%", label: "Client Satisfaction" },
   { end: 15, suffix: "+", label: "Years Experience" },
+];
+
+const features = [
+  { icon: Globe, title: "Global Immigration Services", desc: "Comprehensive immigration solutions across 180+ countries with expert guidance." },
+  { icon: Users, title: "User-Friendly Technology", desc: "Cutting-edge digital platform to simplify complex visa processes." },
+  { icon: Shield, title: "Decades of Expertise", desc: "Experienced professionals committed to delivering results with integrity." },
 ];
 
 const Index = () => {
@@ -61,10 +66,60 @@ const Index = () => {
     <div className="pb-16 lg:pb-0">
       <HeroSlider />
 
-      {/* Features */}
+      {/* Services - 4 Card Grid */}
       <section className="section-padding bg-background">
         <div className="container-main">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 -mt-20 md:-mt-16 relative z-20">
+          <AnimatedSection>
+            <div className="text-center mb-10">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">What We Do</span>
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">Our Services</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+                Specialized immigration and recruitment services with deep expertise across multiple corridors.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {services.map((s, i) => (
+              <AnimatedSection key={i} delay={i * 0.1}>
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="bg-card rounded-3xl overflow-hidden group cursor-pointer border border-border hover:border-primary/30 shadow-sm hover:shadow-lg hover:shadow-primary/10 transition-all h-full flex flex-col"
+                >
+                  <div className="h-36 sm:h-44 relative overflow-hidden">
+                    <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/90 to-accent/70 flex items-center justify-center shadow-md">
+                        <s.icon className="text-primary-foreground" size={18} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4 sm:p-5 flex flex-col flex-1">
+                    <h3 className="font-display font-bold text-sm sm:text-base text-foreground mb-2 group-hover:text-primary transition-colors">{s.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
+                    <Link to="/services" className="mt-3 inline-flex items-center gap-1.5 text-primary font-semibold text-xs group-hover:gap-2.5 transition-all">
+                      Learn More <ArrowRight size={12} />
+                    </Link>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link to="/services" className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all">
+              View All Services <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="section-padding bg-muted/50">
+        <div className="container-main">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {features.map((f, i) => (
               <AnimatedSection key={i} delay={i * 0.12}>
                 <motion.div
@@ -173,62 +228,6 @@ const Index = () => {
           <div className="text-center mt-8">
             <Link to="/insights" className="inline-flex items-center gap-2 px-7 py-2.5 border-2 border-accent text-accent font-semibold rounded-full hover:bg-accent hover:text-accent-foreground transition-all text-sm">
               All Alerts <ArrowRight size={14} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section className="section-padding bg-background">
-        <div className="container-main">
-          <AnimatedSection>
-            <div className="text-center mb-10">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">What We Do</span>
-              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">Our Services</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-                Specialized immigration and recruitment services with deep expertise across multiple corridors.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="space-y-5">
-            {services.map((s, i) => (
-              <AnimatedSection key={i} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -3 }}
-                  className={`flex flex-col ${i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} bg-card rounded-3xl overflow-hidden group cursor-pointer border border-border hover:border-primary/20 shadow-sm hover:shadow-lg hover:shadow-primary/5 transition-all`}
-                >
-                  <div className="md:w-2/5 h-48 sm:h-56 md:h-auto relative overflow-hidden">
-                    <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute top-4 left-4">
-                      <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary/90 to-accent/70 flex items-center justify-center shadow-md">
-                        <s.icon className="text-primary-foreground" size={22} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="md:w-3/5 p-6 sm:p-8 flex flex-col justify-center">
-                    <h3 className="font-display font-bold text-xl sm:text-2xl text-foreground mb-3 group-hover:text-primary transition-colors">{s.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {s.highlights.map((h) => (
-                        <span key={h} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary/8 to-accent/8 rounded-full text-xs font-medium text-primary border border-primary/15">
-                          <CheckCircle size={11} /> {h}
-                        </span>
-                      ))}
-                    </div>
-                    <Link to="/services" className="inline-flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all">
-                      Learn More <ArrowRight size={14} />
-                    </Link>
-                  </div>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <Link to="/services" className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all">
-              View All Services <ArrowRight size={16} />
             </Link>
           </div>
         </div>
