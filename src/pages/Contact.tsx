@@ -16,9 +16,11 @@ const Contact = () => {
   return (
     <div className="pt-20 pb-16 lg:pb-0">
       {/* Hero */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-br from-section-alt via-background to-section-alt overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-gradient-to-br from-muted via-background to-muted overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.08),transparent_60%)]" />
         <div className="relative z-10 container-main px-4 text-center">
+          <motion.div initial={{ width: 0 }} animate={{ width: "3rem" }} transition={{ duration: 0.6 }} className="h-1 bg-accent rounded-full mx-auto mb-6" />
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">Contact Us</motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-muted-foreground max-w-2xl mx-auto">
             Ready to simplify your global immigration needs? Get in touch with our team today.
@@ -38,24 +40,24 @@ const Contact = () => {
                 { icon: Phone, label: "Phone", value: "+65 8000 0000" },
                 { icon: Clock, label: "Business Hours", value: "Mon-Fri: 9:00 AM - 6:00 PM (SGT)" },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center flex-shrink-0">
+                <motion.div key={i} whileHover={{ x: 4 }} className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center flex-shrink-0 group-hover:from-primary/25 group-hover:to-accent/20 transition-colors">
                     <item.icon size={22} className="text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground">{item.label}</h4>
                     <p className="text-sm text-muted-foreground">{item.value}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-            <div className="mt-8 rounded-2xl overflow-hidden shadow-lg border border-border">
+            <div className="mt-8 rounded-3xl overflow-hidden shadow-lg border border-border">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8!2d103.849!3d1.286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMTAuMCJOIDEwM8KwNTAnNTYuMCJF!5e0!3m2!1sen!2ssg!4v1" width="100%" height="250" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Office location" />
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <div className="glass-card rounded-2xl p-8">
+            <div className="bg-card rounded-3xl p-8 border border-border">
               <h3 className="font-display font-bold text-xl text-foreground mb-6">Send us a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -80,7 +82,7 @@ const Contact = () => {
                 <textarea placeholder="Your Message" rows={5} required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl bg-background text-foreground border border-border focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none placeholder:text-muted-foreground/60 transition-all" />
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit"
-                  className="w-full px-8 py-3.5 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all flex items-center justify-center gap-2">
+                  className="w-full px-8 py-3.5 bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all flex items-center justify-center gap-2">
                   <Send size={18} /> Send Message
                 </motion.button>
               </form>

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Globe, Users, Shield, ArrowRight, Briefcase, Plane, Building2, ChevronRight, CheckCircle, Calendar, GraduationCap } from "lucide-react";
 import { useRef } from "react";
 import HeroSlider from "@/components/HeroSlider";
+import FloatingCTA from "@/components/FloatingCTA";
 import AnimatedSection from "@/components/AnimatedSection";
 import CounterAnimation from "@/components/CounterAnimation";
 import PartnersMarquee from "@/components/PartnersMarquee";
@@ -65,6 +66,7 @@ const Index = () => {
   return (
     <div className="pb-16 lg:pb-0">
       <HeroSlider />
+      <FloatingCTA />
 
       {/* Services - 4 Card Grid */}
       <section className="section-padding bg-background">
@@ -83,17 +85,21 @@ const Index = () => {
             {services.map((s, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ y: -6 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="bg-card rounded-3xl overflow-hidden group cursor-pointer border border-border hover:border-primary/30 shadow-sm hover:shadow-lg hover:shadow-primary/10 transition-all h-full flex flex-col"
+                  className="bg-card rounded-3xl overflow-hidden group cursor-pointer border border-border hover:border-primary/40 shadow-sm hover:shadow-xl hover:shadow-primary/15 transition-all h-full flex flex-col relative"
                 >
                   <div className="h-36 sm:h-44 relative overflow-hidden">
                     <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-accent/0 group-hover:from-primary/20 group-hover:via-primary/10 group-hover:to-accent/20 transition-all duration-500" />
                     <div className="absolute top-3 left-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/90 to-accent/70 flex items-center justify-center shadow-md">
+                      <motion.div
+                        whileHover={{ rotate: 10, scale: 1.1 }}
+                        className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30"
+                      >
                         <s.icon className="text-primary-foreground" size={18} />
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
                   <div className="p-4 sm:p-5 flex flex-col flex-1">
@@ -103,6 +109,8 @@ const Index = () => {
                       Learn More <ArrowRight size={12} />
                     </Link>
                   </div>
+                  {/* Bottom accent line on hover */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </motion.div>
               </AnimatedSection>
             ))}
