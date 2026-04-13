@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 const testimonials = [
   { name: "Mohammad Rahman", role: "Construction Project Manager", country: "Singapore", flag: "sg", rating: 5, text: "VisaHOBe made our S Pass application seamless. Their embassy-ready documentation saved us weeks of back-and-forth. The team's knowledge of Singapore's MOM regulations is exceptional." },
@@ -29,34 +29,33 @@ const TestimonialsCarousel = () => {
   const t = testimonials[current];
 
   return (
-    <section className="section-padding bg-background overflow-hidden">
+    <section className="section-padding bg-section-alt overflow-hidden">
       <div className="container-main">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">What Our Clients Say</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">Trusted by businesses and professionals across the globe.</p>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">Testimonials</span>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">What Our Clients Say</h2>
         </motion.div>
 
         <div className="relative max-w-3xl mx-auto">
-          <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-14 z-20 w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all">
-            <ChevronLeft size={20} />
+          <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-14 z-20 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm">
+            <ChevronLeft size={18} />
           </button>
-          <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-14 z-20 w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all">
-            <ChevronRight size={20} />
+          <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-14 z-20 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm">
+            <ChevronRight size={18} />
           </button>
 
-          <div className="min-h-[280px] flex items-center">
+          <div className="min-h-[260px] flex items-center">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div key={current} custom={direction} variants={variants} initial="enter" animate="center" exit="exit" transition={{ type: "spring", stiffness: 300, damping: 30 }} className="w-full">
-                <div className="glass-card rounded-2xl p-8 md:p-10 text-center relative">
-                  <Quote className="text-primary/20 absolute top-6 left-6" size={40} />
+                <div className="bg-card rounded-3xl p-8 md:p-10 text-center border border-border shadow-sm">
                   <div className="flex justify-center gap-1 mb-5">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={18} className={i < t.rating ? "text-primary fill-primary" : "text-border"} />
+                      <Star key={i} size={16} className={i < t.rating ? "text-primary fill-primary" : "text-border"} />
                     ))}
                   </div>
                   <p className="text-foreground leading-relaxed text-sm md:text-base italic mb-6 max-w-2xl mx-auto">"{t.text}"</p>
                   <div className="flex items-center justify-center gap-3">
-                    <img src={`https://flagcdn.com/w40/${t.flag}.png`} alt={t.country} className="w-8 h-5 rounded object-cover shadow-sm" />
+                    <img src={`https://flagcdn.com/w40/${t.flag}.png`} alt={t.country} className="w-7 h-[18px] rounded-sm object-cover shadow-sm" />
                     <div className="text-left">
                       <p className="font-display font-bold text-foreground text-sm">{t.name}</p>
                       <p className="text-xs text-muted-foreground">{t.role} — {t.country}</p>
@@ -70,7 +69,7 @@ const TestimonialsCarousel = () => {
           <div className="flex justify-center gap-2 mt-6">
             {testimonials.map((_, i) => (
               <button key={i} onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-                className={`h-2.5 rounded-full transition-all duration-300 ${i === current ? "bg-primary w-8" : "bg-border w-2.5 hover:bg-muted-foreground"}`} />
+                className={`h-2 rounded-full transition-all duration-300 ${i === current ? "bg-primary w-7" : "bg-border w-2 hover:bg-muted-foreground"}`} />
             ))}
           </div>
         </div>
