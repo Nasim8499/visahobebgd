@@ -11,8 +11,9 @@ const About = () => {
       {/* Hero */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <img src={globalNetwork} alt="Global network" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(230,35%,8%)]/60 via-[hsl(262,40%,15%)]/40 to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--hero-overlay))]/70 via-[hsl(var(--primary))]/20 to-background/95" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+          <motion.div initial={{ width: 0 }} animate={{ width: "3rem" }} transition={{ duration: 0.6 }} className="h-1 bg-accent rounded-full mb-6" />
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="font-display text-3xl md:text-5xl font-bold text-white mb-4">
             About VisaHOBe Pte. Ltd.
           </motion.h1>
@@ -35,29 +36,29 @@ const About = () => {
                 { icon: Globe, label: "Registered Office", value: "68 Circular Road, #02-01, Singapore 049422" },
                 { icon: Users, label: "Operational Focus", value: "Fully foreign-owned, operational hub in Dhaka, Bangladesh" },
               ].map((item, i) => (
-                <div key={i} className="flex gap-3 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center flex-shrink-0">
+                <motion.div key={i} whileHover={{ x: 4 }} className="flex gap-3 items-start group">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center flex-shrink-0 group-hover:from-primary/25 group-hover:to-accent/20 transition-colors">
                     <item.icon size={20} className="text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-sm text-foreground">{item.label}</h4>
                     <p className="text-sm text-muted-foreground">{item.value}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
             <div className="relative">
               <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-primary/20 via-transparent to-accent/20 blur-xl" />
-              <img src={aboutTeam} alt="VisaHOBe team" className="rounded-2xl shadow-2xl w-full relative" loading="lazy" width={800} height={600} />
+              <img src={aboutTeam} alt="VisaHOBe team" className="rounded-3xl shadow-2xl w-full relative" loading="lazy" width={800} height={600} />
             </div>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Directors */}
-      <section className="section-padding bg-section-alt">
+      <section className="section-padding bg-muted/50">
         <div className="container-main">
           <AnimatedSection>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-center text-foreground mb-12">Our Directors</h2>
@@ -71,7 +72,7 @@ const About = () => {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="glass-card rounded-2xl p-8 relative overflow-hidden group"
+                  className="bg-card rounded-3xl p-8 relative overflow-hidden group border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all"
                 >
                   <motion.div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" initial={{ scaleX: 0, originX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: i * 0.2 + 0.3 }} />
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center mb-4 group-hover:from-primary/25 group-hover:to-accent/20 transition-colors">
@@ -97,9 +98,9 @@ const About = () => {
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <div className="overflow-x-auto">
-              <motion.table className="w-full border-collapse glass-card rounded-2xl overflow-hidden" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+              <motion.table className="w-full border-collapse bg-card rounded-3xl overflow-hidden border border-border" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                 <thead>
-                  <tr className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
+                  <tr className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
                     <th className="px-6 py-4 text-left font-display font-bold text-sm">Service Category</th>
                     <th className="px-6 py-4 text-left font-display font-bold text-sm">Description</th>
                     <th className="px-6 py-4 text-left font-display font-bold text-sm">Target Destinations</th>
@@ -124,10 +125,12 @@ const About = () => {
       </section>
 
       {/* Digital Transparency */}
-      <section className="section-padding bg-section-alt">
+      <section className="section-padding bg-muted/50">
         <div className="container-main max-w-4xl mx-auto text-center">
           <AnimatedSection>
-            <Award className="text-primary mx-auto mb-4" size={48} />
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/15 flex items-center justify-center mx-auto mb-4">
+              <Award className="text-primary" size={32} />
+            </div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">Commitment to Digital Transparency</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
               We are committed to modernizing the migration process. We are actively developing a cutting-edge digital platform featuring a <span className="text-gradient font-semibold">"Liquid Interface"</span> designed to simplify complex information.
@@ -140,9 +143,11 @@ const About = () => {
       <section className="section-padding bg-background">
         <div className="container-main max-w-4xl mx-auto">
           <AnimatedSection>
-            <div className="glass-card rounded-2xl p-8">
+            <div className="bg-card rounded-3xl p-8 border border-border">
               <div className="flex items-start gap-4">
-                <Shield className="text-primary flex-shrink-0 mt-1" size={28} />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center flex-shrink-0">
+                  <Shield className="text-primary" size={24} />
+                </div>
                 <div>
                   <h3 className="font-display font-bold text-lg text-foreground mb-2">Important Note on Compliance</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -159,12 +164,13 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(262,70%,45%)] to-primary relative overflow-hidden">
+      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(262,70%,45%)] to-accent relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--accent)/0.2),transparent_50%)]" />
         <div className="container-main text-center relative z-10">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Ready to Get Started?</h2>
           <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">Contact us today to discuss your global mobility needs.</p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
-            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-semibold rounded-xl hover:shadow-xl transition-all">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-bold rounded-full hover:shadow-xl hover:shadow-accent/30 transition-all">
               Contact Us <ArrowRight size={16} />
             </Link>
           </motion.div>
