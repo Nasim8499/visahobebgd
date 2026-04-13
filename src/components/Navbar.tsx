@@ -53,9 +53,7 @@ const Navbar = () => {
       <div className="container-main flex items-center justify-between h-16 md:h-[68px] px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <span className="font-display font-bold text-white text-base">V</span>
-          </div>
+          <img src="/logo.png" alt="VisaHOBe" className="w-9 h-9 rounded-lg object-contain" />
           <div className="flex flex-col">
             <span className="font-semibold text-white text-sm leading-tight tracking-wide">
               VisaHOBe Pte. Ltd.
