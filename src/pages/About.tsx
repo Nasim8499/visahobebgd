@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Building, Users, Globe, Shield, ArrowRight, Award, Linkedin, Mail } from "lucide-react";
+import { Building, Users, Globe, Shield, ArrowRight, Award, Linkedin, Mail, Star, Quote } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import aboutTeam from "@/assets/about-team.jpg";
 import globalNetwork from "@/assets/global-network.jpg";
@@ -10,35 +10,24 @@ import teamOperations from "@/assets/team-operations.jpg";
 import teamVisa from "@/assets/team-visa.jpg";
 
 const teamMembers = [
-  {
-    name: "Nasim Shariyar",
-    role: "Director & CEO",
-    desc: "Majority shareholder directing core strategy with deep expertise in South Asian recruitment markets.",
-    image: teamNasim,
-  },
-  {
-    name: "Dr. Abdul Rashid Bin Mohamed Ali",
-    role: "Local Director (Singapore)",
-    desc: "Brings extensive experience from education and administration sectors, ensuring Singapore compliance.",
-    image: teamRashid,
-  },
-  {
-    name: "Fatima Rahman",
-    role: "Head of Operations",
-    desc: "Oversees daily operations, employer coordination, and workforce deployment across all corridors.",
-    image: teamOperations,
-  },
-  {
-    name: "Arif Hossain",
-    role: "Lead Visa Consultant",
-    desc: "Expert in embassy-ready documentation with 10+ years handling complex multi-country visa cases.",
-    image: teamVisa,
-  },
+  { name: "Nasim Shariyar", role: "Director & CEO", desc: "Majority shareholder directing core strategy with deep expertise in South Asian recruitment markets.", image: teamNasim },
+  { name: "Dr. Abdul Rashid Bin Mohamed Ali", role: "Local Director (Singapore)", desc: "Brings extensive experience from education and administration sectors, ensuring Singapore compliance.", image: teamRashid },
+  { name: "Fatima Rahman", role: "Head of Operations", desc: "Oversees daily operations, employer coordination, and workforce deployment across all corridors.", image: teamOperations },
+  { name: "Arif Hossain", role: "Lead Visa Consultant", desc: "Expert in embassy-ready documentation with 10+ years handling complex multi-country visa cases.", image: teamVisa },
+];
+
+const clientTestimonials = [
+  { name: "Mohammad Rahman", role: "Construction PM", country: "Singapore", flag: "sg", rating: 5, text: "VisaHOBe made our S Pass application seamless. Their embassy-ready documentation saved us weeks of back-and-forth." },
+  { name: "Sarah Mitchell", role: "HR Director", country: "Australia", flag: "au", rating: 5, text: "We've placed over 200 skilled workers through VisaHOBe's recruitment services. Their expertise is unmatched." },
+  { name: "Ahmed Al-Mansour", role: "Operations Manager", country: "Saudi Arabia", flag: "sa", rating: 5, text: "Professional, reliable, and incredibly thorough. VisaHOBe handled our entire workforce visa process flawlessly." },
+  { name: "Elena Petrovic", role: "Talent Acquisition Lead", country: "Serbia", flag: "rs", rating: 5, text: "Finding a partner who understands Serbia's visa landscape was challenging — until we found VisaHOBe." },
+  { name: "Tanvir Hossain", role: "Electrical Engineer", country: "Russia", flag: "ru", rating: 5, text: "From document preparation to post-arrival guidance, VisaHOBe supported me at every step of my journey." },
+  { name: "Kamal Uddin", role: "IT Specialist", country: "Cambodia", flag: "kh", rating: 5, text: "VisaHOBe simplified everything. Their consultancy approach is transparent and trustworthy." },
 ];
 
 const About = () => {
   return (
-    <div className="pt-20 pb-16 lg:pb-0">
+    <div className="pt-14 pb-16 lg:pb-0">
       {/* Hero */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <img src={globalNetwork} alt="Global network" className="absolute inset-0 w-full h-full object-cover" />
@@ -111,7 +100,6 @@ const About = () => {
                   <div className="relative h-48 sm:h-56 overflow-hidden">
                     <img src={member.image} alt={member.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" width={512} height={512} />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                    {/* Social overlay */}
                     <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
                         <Linkedin size={14} className="text-primary-foreground" />
@@ -134,11 +122,48 @@ const About = () => {
         </div>
       </section>
 
-      {/* Service Portfolio Table */}
+      {/* Client Testimonials */}
       <section className="section-padding bg-background">
         <div className="container-main">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-center text-foreground mb-12">Our Comprehensive Service Portfolio</h2>
+            <div className="text-center mb-12">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">Client Reviews</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">What Our Clients Say</h2>
+            </div>
+          </AnimatedSection>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {clientTestimonials.map((t, i) => (
+              <AnimatedSection key={i} delay={i * 0.08}>
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="bg-card rounded-2xl p-5 sm:p-6 border border-border hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all relative"
+                >
+                  <Quote size={24} className="text-primary/15 absolute top-4 right-4" />
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(t.rating)].map((_, j) => (
+                      <Star key={j} size={12} className="text-primary fill-primary" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 italic">"{t.text}"</p>
+                  <div className="flex items-center gap-3 pt-3 border-t border-border">
+                    <img src={`https://flagcdn.com/w40/${t.flag}.png`} alt={t.country} className="w-7 h-[18px] rounded-sm object-cover shadow-sm" loading="lazy" />
+                    <div>
+                      <p className="font-semibold text-foreground text-xs">{t.name}</p>
+                      <p className="text-[10px] text-muted-foreground">{t.role} — {t.country}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Service Portfolio Table */}
+      <section className="section-padding bg-muted/50">
+        <div className="container-main">
+          <AnimatedSection>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-center text-foreground mb-12">Our Service Portfolio</h2>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <div className="overflow-x-auto">
@@ -153,7 +178,7 @@ const About = () => {
                 <tbody>
                   {[
                     { cat: "Manpower Recruitment", desc: "Placement of skilled and semi-skilled workers, including overseas employer coordination, worker screening, and professional employment contract preparation.", dest: "Singapore (WP, S Pass, EP), Australia (Subclass 482), Russia, Saudi Arabia, Cambodia, and Belarus." },
-                    { cat: "Visa & Travel Services", desc: 'Processing assistance for all visa types (Work, Tourist, Business, Student). We specialize in preparing "Embassy-Ready" documentation to minimize errors.', dest: "Australia and emerging European Gateways like Serbia and Moldova." },
+                    { cat: "Visa & Travel Services", desc: 'Processing assistance for all visa types (Work, Tourist, Business, Student). We specialize in preparing "Embassy-Ready" documentation.', dest: "Australia and emerging European Gateways like Serbia and Moldova." },
                   ].map((row, i) => (
                     <motion.tr key={i} className="border-t border-border hover:bg-primary/5 transition-colors" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 + 0.3 }}>
                       <td className="px-6 py-5 font-semibold text-sm text-foreground align-top">{row.cat}</td>
@@ -169,22 +194,22 @@ const About = () => {
       </section>
 
       {/* Digital Transparency */}
-      <section className="section-padding bg-muted/50">
+      <section className="section-padding bg-background">
         <div className="container-main max-w-4xl mx-auto text-center">
           <AnimatedSection>
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/15 flex items-center justify-center mx-auto mb-4">
               <Award className="text-primary" size={32} />
             </div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">Commitment to Digital Transparency</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              We are committed to modernizing the migration process. We are actively developing a cutting-edge digital platform featuring a <span className="text-gradient font-semibold">"Liquid Interface"</span> designed to simplify complex information.
+            <p className="text-muted-foreground leading-relaxed">
+              We are committed to modernizing the migration process with a cutting-edge digital platform featuring a <span className="text-gradient font-semibold">"Liquid Interface"</span> designed to simplify complex information.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Compliance Note */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-muted/50">
         <div className="container-main max-w-4xl mx-auto">
           <AnimatedSection>
             <div className="bg-card rounded-3xl p-8 border border-border">
@@ -195,10 +220,10 @@ const About = () => {
                 <div>
                   <h3 className="font-display font-bold text-lg text-foreground mb-2">Important Note on Compliance</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    VisaHOBe is legally registered with ACRA under the business activity code <span className="font-semibold text-foreground">70201: Management Consultancy Services</span>.
+                    VisaHOBe is registered with ACRA under business activity code <span className="font-semibold text-foreground">70201: Management Consultancy Services</span>.
                   </p>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    The company does not currently hold an Employment Agency (EA) license from Singapore's Ministry of Manpower (MOM) for manpower placement. Our services are focused on consultancy, file preparation, and travel assistance.
+                    The company does not hold an EA license from Singapore's MOM. Our services focus on consultancy, file preparation, and travel assistance.
                   </p>
                 </div>
               </div>

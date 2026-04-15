@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Briefcase, Globe, Phone } from "lucide-react";
+import { Home, Briefcase, Globe, Phone, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navItems = [
   { icon: Home, label: "Home", path: "/" },
   { icon: Briefcase, label: "Services", path: "/services" },
   { icon: Globe, label: "Destinations", path: "/destinations" },
+  { icon: Users, label: "Careers", path: "/careers" },
   { icon: Phone, label: "Contact", path: "/contact" },
 ];
 
@@ -22,7 +23,7 @@ const MobileBottomNav = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="relative flex flex-col items-center gap-0.5 py-1.5 px-3 min-w-[60px]"
+                className="relative flex flex-col items-center gap-0.5 py-1.5 px-3 min-w-[52px]"
               >
                 {isActive && (
                   <motion.div
@@ -37,10 +38,10 @@ const MobileBottomNav = () => {
                     isActive ? "text-primary" : "text-foreground/40"
                   }`}
                 >
-                  <item.icon size={20} strokeWidth={isActive ? 2.5 : 1.8} />
+                  <item.icon size={18} strokeWidth={isActive ? 2.5 : 1.8} />
                 </motion.div>
                 <span
-                  className={`text-[10px] font-medium transition-colors ${
+                  className={`text-[9px] font-medium transition-colors ${
                     isActive ? "text-primary" : "text-foreground/35"
                   }`}
                 >
