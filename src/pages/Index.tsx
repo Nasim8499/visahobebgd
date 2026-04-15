@@ -208,7 +208,7 @@ const Index = () => {
         <div className="container-main">
           <AnimatedSection>
             <div className="text-center mb-10">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-xs font-semibold mb-4">Latest Updates</span>
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white text-xs font-semibold mb-4">Latest Updates</span>
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Immigration News Alerts
               </h2>
@@ -222,11 +222,11 @@ const Index = () => {
                   className="bg-white/[0.06] rounded-2xl p-4 sm:p-5 h-full flex flex-col group cursor-pointer border border-white/[0.06] hover:bg-white/[0.1] hover:border-primary/30 transition-all"
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-accent/25 text-accent rounded-full">{n.tag}</span>
+                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-white/20 text-white rounded-full">{n.tag}</span>
                     <span className="text-[10px] sm:text-xs text-white/35 flex items-center gap-1"><Calendar size={10} />{n.date}</span>
                   </div>
                   <h3 className="font-display font-semibold text-white text-xs sm:text-sm leading-snug group-hover:text-primary transition-colors flex-1">{n.title}</h3>
-                  <Link to="/insights" className="mt-3 inline-flex items-center gap-1 text-accent text-xs font-semibold group-hover:gap-2 transition-all">
+                  <Link to="/insights" className="mt-3 inline-flex items-center gap-1 text-white text-xs font-semibold group-hover:gap-2 transition-all">
                     Read More <ChevronRight size={12} />
                   </Link>
                 </motion.div>
@@ -234,7 +234,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link to="/insights" className="inline-flex items-center gap-2 px-7 py-2.5 border-2 border-accent text-accent font-semibold rounded-full hover:bg-accent hover:text-accent-foreground transition-all text-sm">
+            <Link to="/insights" className="inline-flex items-center gap-2 px-7 py-2.5 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-primary transition-all text-sm">
               All Alerts <ArrowRight size={14} />
             </Link>
           </div>
@@ -242,6 +242,35 @@ const Index = () => {
       </section>
 
       <TestimonialsCarousel />
+
+      {/* CTA Banner */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-[hsl(202,79%,41%)] to-primary" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(202,79%,50%,0.3),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(207,100%,30%,0.4),transparent_60%)]" />
+        <div className="relative z-10 container-main text-center px-4">
+          <AnimatedSection>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5">
+              Ready to Simplify Your Global Immigration?
+            </h2>
+            <p className="text-white/80 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+              Partner with VisaHOBe for seamless workforce mobility across 180+ countries. Let our experts handle the complexity.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
+                <Link to="/contact" className="block px-8 py-3.5 bg-white text-primary font-bold rounded-full shadow-lg hover:shadow-xl transition-all">
+                  Get Started Today
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
+                <Link to="/services" className="block px-8 py-3.5 bg-white/15 backdrop-blur-md text-white font-semibold rounded-full border border-white/30 hover:bg-white/25 transition-all">
+                  Explore Services
+                </Link>
+              </motion.div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
 
       {/* Newsletter */}
       <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(207,60%,10%)] to-[hsl(207,80%,12%)]">
@@ -260,7 +289,7 @@ const Index = () => {
                 </div>
                 <input type="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-xl bg-white/8 text-white placeholder:text-white/35 border border-white/10 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm" />
                 <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} type="submit"
-                  className="px-7 py-3 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-accent/25 transition-all">
+                  className="px-7 py-3 bg-white text-primary font-bold rounded-full hover:shadow-lg transition-all">
                   Subscribe
                 </motion.button>
               </form>

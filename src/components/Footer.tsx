@@ -61,15 +61,15 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-white mb-4">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm">
-                <MapPin size={16} className="mt-0.5 text-accent flex-shrink-0" />
+                <MapPin size={16} className="mt-0.5 text-white/70 flex-shrink-0" />
                 68 Circular Road, #02-01, Singapore 049422
               </li>
               <li className="flex items-center gap-2 text-sm">
-                <Mail size={16} className="text-accent flex-shrink-0" />
+                <Mail size={16} className="text-white/70 flex-shrink-0" />
                 info@visahobe.com
               </li>
               <li className="flex items-center gap-2 text-sm">
-                <Phone size={16} className="text-accent flex-shrink-0" />
+                <Phone size={16} className="text-white/70 flex-shrink-0" />
                 +65 8000 0000
               </li>
             </ul>

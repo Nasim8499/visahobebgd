@@ -70,7 +70,7 @@ const Services = () => {
                   {service.features.map((f, j) => (
                     <motion.li key={j} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: j * 0.08 }}
                       className="flex items-center gap-2.5 text-sm text-foreground">
-                      <CheckCircle size={16} className="text-accent flex-shrink-0" /> {f}
+                      <CheckCircle size={16} className="text-primary flex-shrink-0" /> {f}
                     </motion.li>
                   ))}
                 </ul>
@@ -110,14 +110,14 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(262,70%,45%)] to-primary relative overflow-hidden">
+      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(202,79%,41%)] to-primary relative overflow-hidden">
         <div className="container-main text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <Zap className="mx-auto mb-4 text-accent" size={36} />
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Need Help with Your Immigration Needs?</h2>
-            <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-sm sm:text-base">Get in touch with our team to find the best solution.</p>
+            <Zap className="mx-auto mb-4 text-white" size={36} />
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Need Help with Your Immigration Needs?</h2>
+            <p className="text-white/80 max-w-xl mx-auto mb-8 text-sm sm:text-base">Get in touch with our team to find the best solution.</p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
-              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-semibold rounded-xl hover:shadow-xl transition-all">
+              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-primary font-bold rounded-xl hover:shadow-xl transition-all">
                 Get Started <ArrowRight size={16} />
               </Link>
             </motion.div>

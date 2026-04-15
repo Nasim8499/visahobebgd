@@ -164,13 +164,13 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(262,70%,45%)] to-accent relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--accent)/0.2),transparent_50%)]" />
+      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(202,79%,41%)] to-primary relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(202,79%,50%,0.3),transparent_50%)]" />
         <div className="container-main text-center relative z-10">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Ready to Get Started?</h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">Contact us today to discuss your global mobility needs.</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
+          <p className="text-white/80 max-w-xl mx-auto mb-8">Contact us today to discuss your global mobility needs.</p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
-            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-bold rounded-full hover:shadow-xl hover:shadow-accent/30 transition-all">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-primary font-bold rounded-full hover:shadow-xl transition-all">
               Contact Us <ArrowRight size={16} />
             </Link>
           </motion.div>
