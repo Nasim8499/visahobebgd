@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { MapPin, Clock, Briefcase, ArrowRight, Users, Globe, Zap } from "lucide-react";
+import { MapPin, Clock, ArrowRight, Users, Globe, Zap } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import globalNetwork from "@/assets/global-network.jpg";
 
