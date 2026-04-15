@@ -1,9 +1,40 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Building, Users, Globe, Shield, ArrowRight, Award } from "lucide-react";
+import { Building, Users, Globe, Shield, ArrowRight, Award, Linkedin, Mail } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import aboutTeam from "@/assets/about-team.jpg";
 import globalNetwork from "@/assets/global-network.jpg";
+import teamNasim from "@/assets/team-nasim.jpg";
+import teamRashid from "@/assets/team-rashid.jpg";
+import teamOperations from "@/assets/team-operations.jpg";
+import teamVisa from "@/assets/team-visa.jpg";
+
+const teamMembers = [
+  {
+    name: "Nasim Shariyar",
+    role: "Director & CEO",
+    desc: "Majority shareholder directing core strategy with deep expertise in South Asian recruitment markets.",
+    image: teamNasim,
+  },
+  {
+    name: "Dr. Abdul Rashid Bin Mohamed Ali",
+    role: "Local Director (Singapore)",
+    desc: "Brings extensive experience from education and administration sectors, ensuring Singapore compliance.",
+    image: teamRashid,
+  },
+  {
+    name: "Fatima Rahman",
+    role: "Head of Operations",
+    desc: "Oversees daily operations, employer coordination, and workforce deployment across all corridors.",
+    image: teamOperations,
+  },
+  {
+    name: "Arif Hossain",
+    role: "Lead Visa Consultant",
+    desc: "Expert in embassy-ready documentation with 10+ years handling complex multi-country visa cases.",
+    image: teamVisa,
+  },
+];
 
 const About = () => {
   return (
@@ -57,32 +88,45 @@ const About = () => {
         </div>
       </section>
 
-      {/* Directors */}
+      {/* Team Members */}
       <section className="section-padding bg-muted/50">
         <div className="container-main">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-center text-foreground mb-12">Our Directors</h2>
+            <div className="text-center mb-12">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">Our Team</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Meet the Leadership</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto mt-3 text-sm sm:text-base">
+                Experienced professionals committed to making global mobility seamless and compliant.
+              </p>
+            </div>
           </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              { name: "Nasim Shariyar", role: "Director & Majority Shareholder (75%)", desc: "As the primary director, Nasim holds the final decision-making authority. He directs the company's core strategy, operating from Dhaka, Bangladesh, ensuring a deep connection to the primary target market." },
-              { name: "Dr. Abdul Rashid Bin Mohamed Ali", role: "Local Director (Singapore)", desc: "Appointed to fulfill the legal requirement for a locally resident Singaporean director. Dr. Ali brings extensive experience from the education and administration sectors, including roles as Chairman of the Academic Board for Birmingham Academy." },
-            ].map((d, i) => (
-              <AnimatedSection key={i} delay={i * 0.2}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {teamMembers.map((member, i) => (
+              <AnimatedSection key={i} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="bg-card rounded-3xl p-8 relative overflow-hidden group border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all"
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="bg-card rounded-3xl overflow-hidden group border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 transition-all"
                 >
-                  <motion.div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" initial={{ scaleX: 0, originX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: i * 0.2 + 0.3 }} />
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center mb-4 group-hover:from-primary/25 group-hover:to-accent/20 transition-colors">
-                    <motion.div whileHover={{ rotate: 10 }}>
-                      <Users size={28} className="text-primary" />
-                    </motion.div>
+                  <div className="relative h-48 sm:h-56 overflow-hidden">
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" width={512} height={512} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                    {/* Social overlay */}
+                    <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
+                        <Linkedin size={14} className="text-primary-foreground" />
+                      </div>
+                      <div className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
+                        <Mail size={14} className="text-primary-foreground" />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-display font-bold text-xl text-foreground mb-1">{d.name}</h3>
-                  <p className="text-primary font-semibold text-sm mb-3">{d.role}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+                  <div className="p-4 sm:p-5">
+                    <h3 className="font-display font-bold text-sm sm:text-base text-foreground group-hover:text-primary transition-colors">{member.name}</h3>
+                    <p className="text-xs text-primary font-semibold mt-1">{member.role}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-2">{member.desc}</p>
+                  </div>
+                  <div className="h-0.5 bg-gradient-to-r from-primary via-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -100,7 +144,7 @@ const About = () => {
             <div className="overflow-x-auto">
               <motion.table className="w-full border-collapse bg-card rounded-3xl overflow-hidden border border-border" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                 <thead>
-                  <tr className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
+                  <tr className="bg-gradient-to-r from-primary to-[hsl(202,79%,41%)] text-white">
                     <th className="px-6 py-4 text-left font-display font-bold text-sm">Service Category</th>
                     <th className="px-6 py-4 text-left font-display font-bold text-sm">Description</th>
                     <th className="px-6 py-4 text-left font-display font-bold text-sm">Target Destinations</th>
@@ -109,7 +153,7 @@ const About = () => {
                 <tbody>
                   {[
                     { cat: "Manpower Recruitment", desc: "Placement of skilled and semi-skilled workers, including overseas employer coordination, worker screening, and professional employment contract preparation.", dest: "Singapore (WP, S Pass, EP), Australia (Subclass 482), Russia, Saudi Arabia, Cambodia, and Belarus." },
-                    { cat: "Visa & Travel Services", desc: 'Processing assistance for all visa types (Work, Tourist, Business, Student). We specialize in preparing "Embassy-Ready" documentation to minimize errors, coupled with post-approval guidance on travel and relocation.', dest: "Strategically focused on high-value destinations like Australia and emerging European Gateways like Serbia and Moldova." },
+                    { cat: "Visa & Travel Services", desc: 'Processing assistance for all visa types (Work, Tourist, Business, Student). We specialize in preparing "Embassy-Ready" documentation to minimize errors.', dest: "Australia and emerging European Gateways like Serbia and Moldova." },
                   ].map((row, i) => (
                     <motion.tr key={i} className="border-t border-border hover:bg-primary/5 transition-colors" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 + 0.3 }}>
                       <td className="px-6 py-5 font-semibold text-sm text-foreground align-top">{row.cat}</td>
