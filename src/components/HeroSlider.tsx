@@ -56,7 +56,7 @@ const HeroSlider = () => {
             animate={{ scale: [1, 1.06] }}
             transition={{ duration: 5, ease: "linear" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(150,30%,8%)]/40 via-[hsl(150,30%,8%)]/30 to-background/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(207,100%,10%)]/40 via-[hsl(207,100%,10%)]/30 to-background/90" />
         </motion.div>
       </AnimatePresence>
 
