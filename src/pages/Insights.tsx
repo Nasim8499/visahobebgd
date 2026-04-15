@@ -17,7 +17,7 @@ const articles = [
 
 const Insights = () => {
   return (
-    <div className="pt-20 pb-16 lg:pb-0">
+    <div className="pt-14 pb-16 lg:pb-0">
       {/* Hero */}
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-section-alt via-background to-section-alt overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5" />

@@ -18,7 +18,7 @@ const countries = [
 
 const Destinations = () => {
   return (
-    <div className="pt-20 pb-16 lg:pb-0">
+    <div className="pt-14 pb-16 lg:pb-0">
       {/* Hero */}
       <section className="relative h-[45vh] sm:h-[50vh] md:h-[60vh] overflow-hidden">
         <motion.img src={globalNetwork} alt="Global destinations" className="absolute inset-0 w-full h-full object-cover" initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 1.5 }} />
@@ -54,13 +54,13 @@ const Destinations = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(262,70%,45%)] to-accent relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(var(--accent)/0.2),transparent_50%)]" />
+      <section className="section-padding bg-gradient-to-r from-primary via-[hsl(202,79%,41%)] to-primary relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(202,79%,50%,0.2),transparent_50%)]" />
         <div className="container-main text-center relative z-10">
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Planning to Work Abroad?</h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-sm sm:text-base">Let our experts guide you through the process for your target destination.</p>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Planning to Work Abroad?</h2>
+          <p className="text-white/80 max-w-xl mx-auto mb-8 text-sm sm:text-base">Let our experts guide you through the process for your target destination.</p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
-            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-bold rounded-full hover:shadow-xl hover:shadow-accent/30 transition-all">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-primary font-bold rounded-full hover:shadow-xl transition-all">
               Contact Us <ArrowRight size={16} />
             </Link>
           </motion.div>
