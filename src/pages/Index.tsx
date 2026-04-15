@@ -208,7 +208,7 @@ const Index = () => {
         <div className="container-main">
           <AnimatedSection>
             <div className="text-center mb-10">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-xs font-semibold mb-4">Latest Updates</span>
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white text-xs font-semibold mb-4">Latest Updates</span>
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Immigration News Alerts
               </h2>
@@ -222,11 +222,11 @@ const Index = () => {
                   className="bg-white/[0.06] rounded-2xl p-4 sm:p-5 h-full flex flex-col group cursor-pointer border border-white/[0.06] hover:bg-white/[0.1] hover:border-primary/30 transition-all"
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-accent/25 text-accent rounded-full">{n.tag}</span>
+                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-white/20 text-white rounded-full">{n.tag}</span>
                     <span className="text-[10px] sm:text-xs text-white/35 flex items-center gap-1"><Calendar size={10} />{n.date}</span>
                   </div>
                   <h3 className="font-display font-semibold text-white text-xs sm:text-sm leading-snug group-hover:text-primary transition-colors flex-1">{n.title}</h3>
-                  <Link to="/insights" className="mt-3 inline-flex items-center gap-1 text-accent text-xs font-semibold group-hover:gap-2 transition-all">
+                  <Link to="/insights" className="mt-3 inline-flex items-center gap-1 text-white text-xs font-semibold group-hover:gap-2 transition-all">
                     Read More <ChevronRight size={12} />
                   </Link>
                 </motion.div>
@@ -234,7 +234,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link to="/insights" className="inline-flex items-center gap-2 px-7 py-2.5 border-2 border-accent text-accent font-semibold rounded-full hover:bg-accent hover:text-accent-foreground transition-all text-sm">
+            <Link to="/insights" className="inline-flex items-center gap-2 px-7 py-2.5 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-primary transition-all text-sm">
               All Alerts <ArrowRight size={14} />
             </Link>
           </div>
