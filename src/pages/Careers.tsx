@@ -41,7 +41,7 @@ const jobListings = [
 
 const Careers = () => {
   return (
-    <div className="pt-20 pb-16 lg:pb-0">
+    <div className="pt-14 pb-16 lg:pb-0">
       {/* Hero */}
       <section className="relative h-[45vh] md:h-[55vh] overflow-hidden">
         <img src={globalNetwork} alt="Careers at VisaHOBe" className="absolute inset-0 w-full h-full object-cover" />
