@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         display: ["Playfair Display", "serif"],
-        body: ["Inter", "sans-serif"],
+        body: ["Poppins", "sans-serif"],
         nav: ["Poppins", "sans-serif"],
         serif: ["Source Serif 4", "Georgia", "serif"],
       },

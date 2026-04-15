@@ -165,7 +165,7 @@ const Index = () => {
       <section ref={parallaxRef} className="relative py-20 md:py-28 overflow-hidden">
         <motion.div style={{ y: bgY }} className="absolute inset-0 -top-20 -bottom-20">
           <img src={globalNetwork} alt="Global network" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(230,35%,8%)]/90 via-[hsl(262,60%,20%)]/70 to-[hsl(230,35%,8%)]/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(207,100%,8%)]/90 via-[hsl(207,80%,15%)]/70 to-[hsl(207,100%,8%)]/90" />
         </motion.div>
         <div className="relative z-10 container-main">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -204,7 +204,7 @@ const Index = () => {
       </section>
 
       {/* News Alerts */}
-      <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(230,30%,12%)] to-[hsl(262,30%,12%)]">
+      <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(207,60%,10%)] to-[hsl(207,80%,12%)]">
         <div className="container-main">
           <AnimatedSection>
             <div className="text-center mb-10">
@@ -244,7 +244,7 @@ const Index = () => {
       <TestimonialsCarousel />
 
       {/* Newsletter */}
-      <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(230,30%,12%)] to-[hsl(262,30%,12%)]">
+      <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(207,60%,10%)] to-[hsl(207,80%,12%)]">
         <div className="container-main">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <AnimatedSection>

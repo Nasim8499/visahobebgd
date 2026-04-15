@@ -23,7 +23,7 @@ const CountryCard = ({ name, code, description, visaTypes }: Props) => (
     />
 
     {/* Dark gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(150,30%,6%)]/90 via-[hsl(150,30%,8%)]/50 to-transparent group-hover:from-[hsl(150,30%,6%)]/95 transition-all duration-500" />
+    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(207,100%,6%)]/90 via-[hsl(207,100%,8%)]/50 to-transparent group-hover:from-[hsl(207,100%,6%)]/95 transition-all duration-500" />
 
     {/* Content */}
     <div className="relative z-10 flex flex-col justify-end h-full p-4 sm:p-5">

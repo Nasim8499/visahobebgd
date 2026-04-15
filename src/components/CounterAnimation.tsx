@@ -37,11 +37,11 @@ const CounterAnimation = ({ end, suffix = "", prefix = "", duration = 2, label }
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-        className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2"
+        className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2"
       >
         {prefix}{count}{suffix}
       </motion.div>
-      <p className="text-sm md:text-base text-muted-foreground font-medium">{label}</p>
+      <p className="text-sm md:text-base text-white/70 font-medium">{label}</p>
     </div>
   );
 };
