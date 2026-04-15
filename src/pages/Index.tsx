@@ -243,6 +243,35 @@ const Index = () => {
 
       <TestimonialsCarousel />
 
+      {/* CTA Banner */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-[hsl(202,79%,41%)] to-primary" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(202,79%,50%,0.3),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(207,100%,30%,0.4),transparent_60%)]" />
+        <div className="relative z-10 container-main text-center px-4">
+          <AnimatedSection>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5">
+              Ready to Simplify Your Global Immigration?
+            </h2>
+            <p className="text-white/80 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+              Partner with VisaHOBe for seamless workforce mobility across 180+ countries. Let our experts handle the complexity.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
+                <Link to="/contact" className="block px-8 py-3.5 bg-white text-primary font-bold rounded-full shadow-lg hover:shadow-xl transition-all">
+                  Get Started Today
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
+                <Link to="/services" className="block px-8 py-3.5 bg-white/15 backdrop-blur-md text-white font-semibold rounded-full border border-white/30 hover:bg-white/25 transition-all">
+                  Explore Services
+                </Link>
+              </motion.div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Newsletter */}
       <section className="section-padding bg-gradient-to-br from-[hsl(var(--footer-bg))] via-[hsl(207,60%,10%)] to-[hsl(207,80%,12%)]">
         <div className="container-main">
@@ -260,7 +289,7 @@ const Index = () => {
                 </div>
                 <input type="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-xl bg-white/8 text-white placeholder:text-white/35 border border-white/10 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm" />
                 <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} type="submit"
-                  className="px-7 py-3 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold rounded-full hover:shadow-lg hover:shadow-accent/25 transition-all">
+                  className="px-7 py-3 bg-white text-primary font-bold rounded-full hover:shadow-lg transition-all">
                   Subscribe
                 </motion.button>
               </form>

@@ -12,7 +12,7 @@ const FloatingCTA = () => {
     >
       <Link
         to="/contact"
-        className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold text-sm rounded-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all"
+        className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-primary to-[hsl(202,79%,41%)] text-white font-semibold text-sm rounded-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all"
       >
         Get Started <ArrowRight size={14} />
       </Link>
