@@ -1,27 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Info, Briefcase, Globe, Newspaper, Phone, Users, ChevronDown, Sun, Moon } from "lucide-react";
+import { ChevronDown, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
-
-const navLinks = [
-  { label: "Home", path: "/", icon: Home },
-  { label: "About", path: "/about", icon: Info },
-  {
-    label: "Services",
-    path: "/services",
-    icon: Briefcase,
-    dropdown: [
-      { label: "Recruitment", path: "/services#recruitment" },
-      { label: "Visa Processing", path: "/services#visa" },
-      { label: "Deployment", path: "/services#deployment" },
-    ],
-  },
-  { label: "Destinations", path: "/destinations", icon: Globe },
-  { label: "Careers", path: "/careers", icon: Users },
-  { label: "Insights", path: "/insights", icon: Newspaper },
-  { label: "Contact", path: "/contact", icon: Phone },
-];
+import { NAV_LINKS, type NavLink } from "@/constants/navigation";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -88,7 +70,7 @@ const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-0">
-          {navLinks.map((link) => {
+          {NAV_LINKS.map((link) => {
             const isActive = location.pathname === link.path;
             const Icon = link.icon;
             const hasDropdown = !!link.dropdown;

@@ -36,6 +36,14 @@
 
     --radius: 1rem;
 
+    /* Custom Brand Colors */
+    --primary-blue: #003B73;        /* Main corporate blue */
+    --gradient-red-1: #E63946;      /* Bright red accent */
+    --gradient-red-2: #F1573D;      /* Warm red accent */
+    --gradient-blue: #177BBB;       /* Secondary blue gradient */
+    --gray-text: #6E7580;           /* Neutral gray for text */
+    --font-primary: 'Poppins', sans-serif;
+
     --nav-from: 207 100% 18%;
     --nav-to: 207 90% 23%;
     --nav-foreground: 0 0% 97%;

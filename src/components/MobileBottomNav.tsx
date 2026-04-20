@@ -1,14 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Briefcase, Globe, Phone, Users } from "lucide-react";
 import { motion } from "framer-motion";
-
-const navItems = [
-  { icon: Home, label: "Home", path: "/" },
-  { icon: Briefcase, label: "Services", path: "/services" },
-  { icon: Globe, label: "Destinations", path: "/destinations" },
-  { icon: Users, label: "Careers", path: "/careers" },
-  { icon: Phone, label: "Contact", path: "/contact" },
-];
+import { MOBILE_NAV_ITEMS } from "@/constants/navigation";
 
 const MobileBottomNav = () => {
   const location = useLocation();
@@ -17,7 +9,7 @@ const MobileBottomNav = () => {
     <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
       <div className="glass border-t-0 shadow-[0_-4px_30px_rgba(0,0,0,0.08)]" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.3)' }}>
         <div className="flex items-center justify-around px-2 py-1.5 pb-[env(safe-area-inset-bottom,8px)]">
-          {navItems.map((item) => {
+          {MOBILE_NAV_ITEMS.map((item) => {
             const isActive = location.pathname === item.path;
             return (
               <Link
